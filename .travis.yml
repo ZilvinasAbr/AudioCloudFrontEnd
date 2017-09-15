@@ -4,5 +4,4 @@ node_js:
 script:
   - yarn test
   - yarn build
-  - cd build
-  - surge -d https://audiocloud.surge.sh
+  - yarn deploy

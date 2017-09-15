@@ -1,11 +1,10 @@
 language: node_js
 node_js:
   - "node"
-before_deploy:
+script:
   - "yarn build"
 
 deploy:
-  skip_cleanup: true
   provider: surge
   project: ./build/
   domain: https://audiocloud.surge.sh

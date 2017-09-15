@@ -1,2 +1,4 @@
-after_success:
-  - surge --project ./build --domain audiocloud.surge.sh
+deploy:
+  provider: surge
+  project: ./build/
+  domain: audiocloud.surge.sh

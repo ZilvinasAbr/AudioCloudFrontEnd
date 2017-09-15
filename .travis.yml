@@ -1,0 +1,7 @@
+install:
+  - npm install
+  - npm build
+deploy:
+  provider: surge
+  project: ./build/
+  domain: audiocloud.surge.sh

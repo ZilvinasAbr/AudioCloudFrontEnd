@@ -8,15 +8,14 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const other = 'https://saitynoprojektas.azurewebsites.net/api/values';
-    const url = 'http://localhost:54990/api/values';
+    const url = 'https://saitynoprojektas.azurewebsites.net/api/values';
     const myInit = {
       method: 'GET',
       headers: new Headers(),
       mode: 'cors',
       cache: 'default'
     };
-    const response = await fetch(other, myInit);
+    const response = await fetch(url, myInit);
     const json = await response.json();
     this.setState({ stuff: json });
   }

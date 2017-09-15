@@ -5,6 +5,7 @@ before_deploy:
   - "yarn build"
 
 deploy:
+  skip_cleanup: true
   provider: surge
   project: ./build/
   domain: https://audiocloud.surge.sh

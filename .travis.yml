@@ -7,4 +7,5 @@ script:
 deploy:
   provider: surge
   project: ./build/
-  domain: audiocloud.surge.sh
+  domain: https://audiocloud.surge.sh
+  skip_cleanup: true

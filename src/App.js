@@ -2,22 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import api from './apiService';
+
 class App extends Component {
   state = {
-    stuff: []
+    songs: []
   };
 
   async componentDidMount() {
-    const url = 'https://saitynoprojektas.azurewebsites.net/api/values';
-    const myInit = {
-      method: 'GET',
-      headers: new Headers(),
-      mode: 'cors',
-      cache: 'default'
-    };
-    const response = await fetch(url, myInit);
-    const json = await response.json();
-    this.setState({ stuff: json });
+    const response = await api.get('/api/song/');
+    const songs = await response.json();
+
+    this.setState({songs});
   }
 
   render() {
@@ -27,10 +23,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to AudioCloud! It works!!!</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>{this.state.stuff[0]}</div>
+        {this.state.songs.map((song, id) => 
+          <div>{song.title} {song.description}</div>)}
       </div>
     );
   }

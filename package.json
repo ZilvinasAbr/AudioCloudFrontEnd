@@ -11,8 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "cd build && surge -d https://audiocloud.surge.sh"
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "surge": "^0.19.0"

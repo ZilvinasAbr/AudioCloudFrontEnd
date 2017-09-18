@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import api from './apiService';
+import Authenticate from './Authenticate';
 
 class App extends Component {
   state = {
@@ -10,7 +11,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const response = await api.get('/api/song/');
+    const response = await api.get('/api/songs/');
     const songs = await response.json();
 
     this.setState({songs});
@@ -24,7 +25,8 @@ class App extends Component {
           <h2>Welcome to AudioCloud! It works!!!</h2>
         </div>
         {this.state.songs.map((song, id) => 
-          <div>{song.title} {song.description}</div>)}
+          <div key={id}>{song.title} {song.description}</div>)}
+        <Authenticate />
       </div>
     );
   }

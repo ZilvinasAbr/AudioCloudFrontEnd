@@ -5,11 +5,18 @@ import api from './apiService';
 const responseGoogle = async (response) => {
   debugger;
 
-  const headers = new Headers();
-  headers.set('Authorization', `Bearer ${response.access_token}`);
+  console.log(response);
 
-  const json = await (await api.get('/api/values', headers)).json();
-  console.log(json);
+  const headers = new Headers();
+  headers.set('Authorization', `Bearer ${response.accessToken}`);
+
+  try {
+    const response2 = await api.get('/api/values', headers);
+    const json = await response2.json();
+    console.log(json);
+  } catch(error) {
+    console.error(error);
+  }
 };
 
 const Authenticate = () => (

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
-
 import api from './apiService';
-import Authenticate from './Authenticate';
+import Auth from './auth/Auth';
+// import Authenticate from './Authenticate';
 
 class App extends Component {
   state = {
@@ -17,6 +18,11 @@ class App extends Component {
     this.setState({songs});
   }
 
+  login = () => {
+    const auth = new Auth();
+    auth.login();
+  }
+
   render() {
     return (
       <div className="App">
@@ -26,7 +32,7 @@ class App extends Component {
         </div>
         {this.state.songs.map((song, id) => 
           <div key={id}>{song.title} {song.description}</div>)}
-        <Authenticate />
+        <button onClick={this.login}>Login</button>
       </div>
     );
   }

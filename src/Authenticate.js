@@ -1,9 +1,16 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
+import api from './apiService';
 
-const responseGoogle = (response) => {
-  console.log(response);
-}
+const responseGoogle = async (response) => {
+  debugger;
+
+  const headers = new Headers();
+  headers.set('Authorization', `Bearer ${response.access_token}`);
+
+  const json = await (await api.get('/api/values', headers)).json();
+  console.log(json);
+};
 
 const Authenticate = () => (
   <GoogleLogin

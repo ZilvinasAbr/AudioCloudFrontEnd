@@ -1,11 +1,11 @@
 import environmentConfig from './environmentConfig';
 
-export function get(url) {
+export function get(url, headers) {
   const baseUrl = environmentConfig[process.env.NODE_ENV].url;
 
   const params = {
     method: 'GET',
-    headers: new Headers(),
+    headers: headers || new Headers(),
     mode: 'cors',
     cache: 'default'
   };

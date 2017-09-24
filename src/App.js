@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import api from './apiService';
-import Auth from './auth/Auth';
+import Auth from './Auth/Auth';
 // import Authenticate from './Authenticate';
 
 class App extends Component {
@@ -11,7 +11,15 @@ class App extends Component {
     songs: []
   };
 
+  getParameterByName = (name) => {
+    var match = RegExp('[#&]' + name + '=([^&]*)').exec(window.location.hash);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  }
+
   async componentDidMount() {
+    const access_token = this.getParameterByName('access_token');
+    console.log('access token:', access_token);
+
     const response = await api.get('/api/songs/');
     const songs = await response.json();
 

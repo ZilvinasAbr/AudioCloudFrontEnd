@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import api from './apiService';
-import Auth from './Auth/Auth';
+import Auth from './auth/Auth';
 
 class App extends Component {
   state = {

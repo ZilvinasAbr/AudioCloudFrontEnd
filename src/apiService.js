@@ -1,7 +1,7 @@
-import environmentConfig from './environmentConfig';
+import {getBackEndUrl} from './environmentConfig';
 
 export function get(url, headers) {
-  const baseUrl = environmentConfig[process.env.NODE_ENV].url;
+  const baseUrl = getBackEndUrl();
 
   const params = {
     method: 'GET',
@@ -14,7 +14,7 @@ export function get(url, headers) {
 }
 
 export function post(url, body) {
-  const baseUrl = environmentConfig[process.env.NODE_ENV].url;
+  const baseUrl = getBackEndUrl();
   
     const params = {
       method: 'POST',

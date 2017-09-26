@@ -1,8 +1,20 @@
-export default {
+const environmentConfig = {
   development: {
-    url: "http://localhost:54991"
+    backEndUrl: "http://localhost:54991",
+    frontEndUrl: "http://localhost:3000"
   },
   production: {
-    url: "https://saitynoprojektas.azurewebsites.net"
+    backEndUrl: "https://saitynoprojektas.azurewebsites.net",
+    frontEndUrl: "https://audiocloud.surge.sh"
   }
 };
+
+export default environmentConfig;
+
+export function getFrontEndUrl() {
+  return environmentConfig[process.env.NODE_ENV].frontEndUrl;
+}
+
+export function getBackEndUrl() {
+  return environmentConfig[process.env.NODE_ENV].backEndUrl;
+}

@@ -5,7 +5,7 @@ export default class Auth {
     domain: 'audiocloud.eu.auth0.com',
     clientID: 'BEeX4kOf2D8EPcaODbNEQ4jFX5gacBSb',
     redirectUri: 'http://localhost:3000/callback',
-    audience: 'https://audiocloud.eu.auth0.com/userinfo',
+    audience: 'saitynoprojektas.azurewebsites.net',
     responseType: 'token id_token',
     scope: 'openid'
   });

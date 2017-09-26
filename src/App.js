@@ -4,7 +4,6 @@ import logo from './logo.svg';
 import './App.css';
 import api from './apiService';
 import Auth from './Auth/Auth';
-// import Authenticate from './Authenticate';
 
 class App extends Component {
   state = {
@@ -29,7 +28,7 @@ class App extends Component {
   login = () => {
     const auth = new Auth();
     auth.login();
-  }
+  };
 
   render() {
     return (

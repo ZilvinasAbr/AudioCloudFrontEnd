@@ -5,6 +5,7 @@
   "dependencies": {
     "auth0-js": "^8.10.1",
     "history": "^4.7.2",
+    "lodash": "^4.17.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-google-login": "^2.9.3",

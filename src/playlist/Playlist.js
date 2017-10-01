@@ -4,7 +4,6 @@ import {
   Button,
   Container,
   Grid,
-  Icon,
   Image,
   Input,
   Item,

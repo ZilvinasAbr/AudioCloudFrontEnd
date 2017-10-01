@@ -35,8 +35,8 @@ const Playlist = () => (
       <Grid.Row>
         <Grid.Column width={4}>
           <Segment>
-            <Segment>
-              Playlist Name
+            <Segment textAlign='center'>
+              <h3>Playlist Name</h3>
             </Segment>
             <Segment>
               <Item.Group divided>
@@ -44,7 +44,7 @@ const Playlist = () => (
                   <Item key={i}>
                     <Item.Image size='tiny' src='/image.png' />
                     <Item.Content>
-                      <Item.Header as='a'>Song Artist - Song Title (Artist Remix)</Item.Header>
+                      <Item.Header>Song Artist - Song Title (Artist Remix)</Item.Header>
                       <Item.Description>
                         Uploader Name
                       </Item.Description>

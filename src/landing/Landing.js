@@ -9,6 +9,8 @@ class Landing extends React.Component {
       auth.login();
     }
 
+    console.log(localStorage.getItem('access_token'));
+
     return <Redirect to={{
       pathname: '/home'
     }}/>

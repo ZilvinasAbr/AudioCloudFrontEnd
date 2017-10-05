@@ -5,10 +5,14 @@ import auth from '../auth/auth';
 const Home = () => {
   if (!auth.isAuthenticated()) {
     auth.login();
+    return <div></div>;
   }
 
   return (
-    <div>Hello</div>
+    <div>
+      <div>Hello</div>
+      <button onClick={auth.logout}>Log Out</button>
+    </div>
   );
 };
 

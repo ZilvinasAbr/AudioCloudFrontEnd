@@ -1,3 +1,4 @@
+import promisify from 'es6-promisify';
 import auth0 from 'auth0-js';
 
 import {getFrontEndUrl} from '../environmentConfig';
@@ -12,16 +13,23 @@ class Auth {
     scope: 'openid'
   });
 
-  handleAuthentication = () => {
-    this.auth0.parseHash((err, authResult) => {
+  handleAuthentication = async () => {
+    const parseHashPromisified = promisify(this.auth0.parseHash);
+
+    try {
+      debugger;
+      const authResult = await parseHashPromisified();
+      debugger;
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        // history.replace('/home');
-      } else if (err) {
-        // history.replace('/home');
-        console.log(err);
+        return true;
       }
-    })
+
+      return false;
+    } catch(err) {
+      console.log(err);
+      return false;
+    }
   };
 
   setSession = (authResult) => {
@@ -30,8 +38,6 @@ class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    // navigate to the home route
-    // history.replace('/home');
   };
 
   logout = () => {
@@ -39,8 +45,6 @@ class Auth {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    // navigate to the home route
-    // history.replace('/home');
   };
 
   login() {

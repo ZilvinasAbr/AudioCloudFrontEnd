@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   Grid,
+  Icon,
   Image,
   Input,
   Item,
@@ -26,6 +27,9 @@ const Playlist = () => (
           <Input icon='search' placeholder='Search...'/>
         </Menu.Item>
         <Menu.Item>
+          <Button>Library</Button>
+        </Menu.Item>
+        <Menu.Item>
           <Button>User Name</Button>
         </Menu.Item>
       </Container>
@@ -37,11 +41,11 @@ const Playlist = () => (
             <Segment textAlign='center'>
               <h3>Playlist Name</h3>
             </Segment>
-            <Segment>
+            <Segment style={{height: '558px', overflow: 'auto'}}>
               <Item.Group divided>
-                {_times(5, i => (
+                {_times(10, i => (
                   <Item key={i}>
-                    <Item.Image size='tiny' src='/image.png' />
+                    <Item.Image size='tiny' src='/image.png'/>
                     <Item.Content>
                       <Item.Header>Song Artist - Song Title (Artist Remix)</Item.Header>
                       <Item.Description>
@@ -75,6 +79,56 @@ const Playlist = () => (
           <Segment>
             <h3>26th May, 2016</h3>
             Song Description.
+          </Segment>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column width={4}>
+        </Grid.Column>
+        <Grid.Column width={6}>
+          <Segment textAlign='center'>
+            <Button
+              icon={<Icon
+                name='heart'
+                size='large'
+              />}
+              size="big"
+            >
+            </Button>
+            <Button
+              icon={<Icon
+                name='step backward'
+                size='large'
+              />}
+              size="big"
+            >
+            </Button>
+            <Button
+              style={{
+                width: '96px',
+                height: '96px'
+              }}
+              circular
+              icon={<Icon
+                name='play'
+                size='big'
+              />}
+            >
+            </Button>
+            <Button
+              icon={<Icon
+                name='step forward'
+                size='large'
+              />}
+              size="big"
+            />
+            <Button
+              icon={<Icon
+                name='volume up'
+                size='large'
+              />}
+              size="big"
+            />
           </Segment>
         </Grid.Column>
       </Grid.Row>

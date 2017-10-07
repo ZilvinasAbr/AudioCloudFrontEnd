@@ -1,5 +1,5 @@
 import React from 'react';
-import auth from './auth/auth';
+import auth from './auth';
 import {Redirect} from 'react-router-dom';
 
 class Authenticate extends React.Component {
@@ -8,17 +8,16 @@ class Authenticate extends React.Component {
   };
 
   async componentDidMount() {
-    debugger;
     const isAuthenticated = await auth.handleAuthentication();
+
     this.setState({isAuthenticated});
   }
 
   render() {
     const {isAuthenticated} = this.state;
-    // return isAuthenticated ? <Redirect to={{
-    //   pathname: '/home'
-    // }}/> : <div/>;
-    return <div>Fuck this</div>;
+    return isAuthenticated ? <Redirect to={{
+      pathname: '/home'
+    }}/> : <div/>;
   }
 }
 

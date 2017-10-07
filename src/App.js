@@ -4,22 +4,18 @@ import {
   Route
 } from 'react-router-dom';
 
-import Authenticate from './Authenticate';
+import PrivateRoute from './helpers/PrivateRoute';
+import Authenticate from './auth/Authenticate';
 import Landing from './landing/Landing';
 import Playlist from './playlist/Playlist';
 import NewsFeed from './newsFeed/NewsFeed';
-import Authentication from './auth/Authentication';
 
 const App = () => (
   <Router>
     <div>
-      <Authentication>
-        <div>
-          <Route exact path="/" component={Landing}/>
-          <Route path="/home" component={Playlist}/>
-          <Route path="/newsFeed" component={NewsFeed}/>
-        </div>
-      </Authentication>
+      <Route exact path="/" component={Landing}/>
+      <PrivateRoute path="/home" component={Playlist}/>
+      <PrivateRoute path="/newsFeed" component={NewsFeed}/>
       <Route path="/authenticate" component={Authenticate}/>
     </div>
   </Router>

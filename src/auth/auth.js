@@ -1,4 +1,3 @@
-import promisify from 'es6-promisify';
 import auth0 from 'auth0-js';
 
 import {getFrontEndUrl} from '../environmentConfig';
@@ -13,23 +12,19 @@ class Auth {
     scope: 'openid'
   });
 
-  handleAuthentication = async () => {
-    const parseHashPromisified = promisify(this.auth0.parseHash);
-
-    try {
-      debugger;
-      const authResult = await parseHashPromisified();
-      debugger;
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-        return true;
-      }
-
-      return false;
-    } catch(err) {
-      console.log(err);
-      return false;
-    }
+  handleAuthentication = () => {
+    return new Promise((resolve) => {
+      this.auth0.parseHash((err, authResult) => {
+        if (authResult && authResult.accessToken && authResult.idToken) {
+          this.setSession(authResult);
+          resolve(true);
+        } else if (err) {
+          console.log(err);
+          resolve(false);
+        }
+        resolve(false);
+      });
+    });
   };
 
   setSession = (authResult) => {

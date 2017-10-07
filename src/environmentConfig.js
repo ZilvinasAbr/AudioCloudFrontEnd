@@ -6,6 +6,10 @@ const environmentConfig = {
   production: {
     backEndUrl: "https://saitynoprojektas.azurewebsites.net",
     frontEndUrl: "https://audiocloud.surge.sh"
+  },
+  test: {
+    backEndUrl: "http://localhost:54991",
+    frontEndUrl: "http://localhost:3000"
   }
 };
 

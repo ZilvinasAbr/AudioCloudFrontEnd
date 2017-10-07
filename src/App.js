@@ -4,16 +4,18 @@ import {
   Route
 } from 'react-router-dom';
 
-import Authenticate from './Authenticate';
+import PrivateRoute from './helpers/PrivateRoute';
+import Authenticate from './auth/Authenticate';
 import Landing from './landing/Landing';
-// import Home from './home/Home';
 import Playlist from './playlist/Playlist';
+import NewsFeed from './newsFeed/NewsFeed';
 
 const App = () => (
   <Router>
     <div>
       <Route exact path="/" component={Landing}/>
-      <Route path="/home" component={Playlist}/>
+      <PrivateRoute path="/home" component={Playlist}/>
+      <PrivateRoute path="/newsFeed" component={NewsFeed}/>
       <Route path="/authenticate" component={Authenticate}/>
     </div>
   </Router>

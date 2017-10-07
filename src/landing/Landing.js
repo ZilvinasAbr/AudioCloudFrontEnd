@@ -4,16 +4,22 @@ import {Redirect} from 'react-router-dom';
 import auth from '../auth/auth';
 
 class Landing extends React.Component {
-  render() {
+  state = {
+    redirect: false
+  };
+
+  componentDidMount() {
     if (!auth.isAuthenticated()) {
       auth.login();
+    } else {
+      this.setState({redirect: true});
     }
+  }
 
-    console.log(localStorage.getItem('access_token'));
-
-    return <Redirect to={{
+  render() {
+    return this.state.redirect ? <Redirect to={{
       pathname: '/home'
-    }}/>
+    }}/> : null;
   }
 }
 

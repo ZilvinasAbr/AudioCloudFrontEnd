@@ -15,7 +15,7 @@ import {
 
 const Playlist = () => (
   <div>
-    <Menu>
+    <Menu borderless>
       <Container>
         <Menu.Item>
           <Button>Home</Button>
@@ -70,9 +70,6 @@ const Playlist = () => (
               <Segment>1,000,000 Plays</Segment>
               <Segment>5,000 Likes</Segment>
             </Segment.Group>
-            <Segment>
-              <Progress percent={10} size='tiny'/>
-            </Segment>
           </Segment.Group>
         </Grid.Column>
         <Grid.Column width={6}>
@@ -82,57 +79,74 @@ const Playlist = () => (
           </Segment>
         </Grid.Column>
       </Grid.Row>
-      <Grid.Row>
-        <Grid.Column width={4}>
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <Segment textAlign='center'>
-            <Button
-              icon={<Icon
-                name='heart'
-                size='large'
-              />}
-              size="big"
-            >
-            </Button>
-            <Button
-              icon={<Icon
-                name='step backward'
-                size='large'
-              />}
-              size="big"
-            >
-            </Button>
-            <Button
-              style={{
-                width: '96px',
-                height: '96px'
-              }}
-              circular
-              icon={<Icon
-                name='play'
-                size='big'
-              />}
-            >
-            </Button>
-            <Button
-              icon={<Icon
-                name='step forward'
-                size='large'
-              />}
-              size="big"
-            />
-            <Button
-              icon={<Icon
-                name='volume up'
-                size='large'
-              />}
-              size="big"
-            />
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
     </Grid>
+    <Menu borderless fixed='bottom'>
+      <Container>
+        <Menu.Item>
+          <Image src='/image.png' size='tiny' inline/>
+        </Menu.Item>
+        <Menu.Item>
+          {/*<Button.Group>*/}
+          <Icon
+            name='heart'
+            size='large'
+          />
+          <Icon
+            name='step backward'
+            size='large'
+          />
+          <Icon
+            name='play'
+            size='large'
+          />
+          <Icon
+            name='step forward'
+            size='large'
+          />
+          <Icon
+            name='volume up'
+            size='large'
+          />
+          <Progress percent={100} size='tiny'/>
+          {/*<Button*/}
+          {/*icon={<Icon*/}
+          {/*name='heart'*/}
+          {/*size='large'*/}
+          {/*/>}*/}
+          {/*size="big"*/}
+          {/*/>*/}
+          {/*<Button*/}
+          {/*icon={<Icon*/}
+          {/*name='step backward'*/}
+          {/*size='large'*/}
+          {/*/>}*/}
+          {/*size="big"*/}
+          {/*/>*/}
+          {/*<Button*/}
+          {/*icon={<Icon*/}
+          {/*name='play'*/}
+          {/*size='large'*/}
+          {/*/>}*/}
+          {/*size='big'*/}
+          {/*/>*/}
+          {/*<Button*/}
+          {/*icon={<Icon*/}
+          {/*name='step forward'*/}
+          {/*size='large'*/}
+          {/*/>}*/}
+          {/*size="big"*/}
+          {/*/>*/}
+          {/*<Button*/}
+          {/*icon={<Icon*/}
+          {/*name='volume up'*/}
+          {/*size='large'*/}
+          {/*/>}*/}
+          {/*size="big"*/}
+          {/*/>*/}
+          {/*</Button.Group>*/}
+        </Menu.Item>
+      </Container>
+    </Menu>
   </div>
 );
 

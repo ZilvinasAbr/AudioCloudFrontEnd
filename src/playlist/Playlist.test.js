@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import App from './App';
+import Playlist from './Playlist';
 
 it('renders without crashing', () => {
-  shallow(<App/>);
+  shallow(<Playlist/>);
 });
 

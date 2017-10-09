@@ -70,6 +70,9 @@ const Playlist = () => (
               <Segment>1,000,000 Plays</Segment>
               <Segment>5,000 Likes</Segment>
             </Segment.Group>
+            <Segment>
+              <Progress percent={50} size='tiny'/>
+            </Segment>
           </Segment.Group>
         </Grid.Column>
         <Grid.Column width={6}>
@@ -107,7 +110,12 @@ const Playlist = () => (
             name='volume up'
             size='large'
           />
-          <Progress percent={100} size='tiny'/>
+        </Menu.Item>
+        <Menu.Item>
+          <Segment>
+            <h3>Song Artist - Song Title (Artist Remix)</h3>
+            <Progress style={{width: '500px'}} percent={50} size='tiny'/>
+          </Segment>
           {/*<Button*/}
           {/*icon={<Icon*/}
           {/*name='heart'*/}

@@ -1,34 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  Container,
+  Feed,
   Image,
-  Item,
-  Segment,
-  Feed
+  Item
 } from 'semantic-ui-react';
 
-const EventsList = ({events}) => (
-  <Segment style={{height: '655px', overflow: 'auto'}}>
+const GenreSongsList = ({songs}) => (
+  <Container>
     <Feed>
-      {events.map((event, i) => (
+      {songs.map((song, i) => (
         <Feed.Event key={i}>
           <Feed.Label>
             <Image src='/image.png'/>
           </Feed.Label>
           <Feed.Content>
             <Feed.Summary>
-              <Feed.User>{event.uploaderName}</Feed.User> {event.eventText}
-              <Feed.Date>{event.createdOn}</Feed.Date>
+              <Feed.User>{song.uploaderName}</Feed.User>
+              <Feed.Date>{song.createdOn}</Feed.Date>
             </Feed.Summary>
             <Feed.Extra>
               <Item.Group divided>
                 <Item key={i}>
-                  <Item.Image size='small' src={event.songImageUrl}/>
+                  <Item.Image size='small' src={song.imageUrl}/>
                   <Item.Content>
-                    <Item.Header>{event.songTitle}</Item.Header>
+                    <Item.Header>{song.title}</Item.Header>
                     <Item.Description>
-                      <p>{event.uploaderName}</p>
-                      <p>{event.plays} Plays {event.likes} Likes</p>
+                      <p>{song.uploaderName}</p>
+                      <p>{song.plays} Plays {song.likes} Likes</p>
                     </Item.Description>
                   </Item.Content>
                 </Item>
@@ -38,19 +38,18 @@ const EventsList = ({events}) => (
         </Feed.Event>
       ))}
     </Feed>
-  </Segment>
+  </Container>
 );
 
-EventsList.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.shape({
+GenreSongsList.propTypes = {
+  songs: PropTypes.arrayOf(PropTypes.shape({
     uploaderName: PropTypes.string.isRequired,
-    eventText: PropTypes.string.isRequired,
     createdOn: PropTypes.string.isRequired,
-    songImageUrl: PropTypes.string.isRequired,
-    songTitle: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     plays: PropTypes.number.isRequired,
     likes: PropTypes.number.isRequired
   })).isRequired
 };
 
-export default EventsList;
+export default GenreSongsList;

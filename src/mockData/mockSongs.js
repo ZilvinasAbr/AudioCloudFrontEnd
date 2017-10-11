@@ -10,4 +10,6 @@ const songs = _times(10, i => ({
   description: 'Song Description.'
 }));
 
+export const getGenreSongs = genreName => songs.map(song => Object.assign({}, song, {genre: genreName}));
+
 export default songs;

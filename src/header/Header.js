@@ -6,22 +6,23 @@ import {
   Input,
   Menu
 } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 
 const Header = ({userName}) => (
   <header>
     <Menu borderless>
       <Container>
         <Menu.Item>
-          <Button>Home</Button>
+          <Link to="/home"><Button>Home</Button></Link>
         </Menu.Item>
         <Menu.Item>
-          <Button>Genres</Button>
+          <Link to="/genres"><Button>Genres</Button></Link>
         </Menu.Item>
         <Menu.Item>
           <Input icon='search' placeholder='Search...'/>
         </Menu.Item>
         <Menu.Item>
-          <Button>Library</Button>
+          <Link to="/library"><Button>Library</Button></Link>
         </Menu.Item>
         <Menu.Item>
           <Button>{userName}</Button>

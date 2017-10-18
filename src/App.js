@@ -11,13 +11,13 @@ import Playlist from './playlist/Playlist';
 import NewsFeed from './newsFeed/NewsFeed';
 import Library from './library/Library';
 import Genres from './genres/Genres';
-import Song from './song/Song';
+import SongContainer from './song/SongContainer';
 
 const App = () => (
   <div>
     <Route exact path="/" component={Landing}/>
     <Layout>
-      <PrivateRoute path="/song/:id" component={Song}/>
+      <PrivateRoute path="/song/:id" component={SongContainer}/>
       <PrivateRoute path="/home" component={NewsFeed}/>
       <PrivateRoute path="/playlist" component={Playlist}/>
       <PrivateRoute path="/newsFeed" component={NewsFeed}/>

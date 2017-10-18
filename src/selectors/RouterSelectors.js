@@ -4,5 +4,5 @@ const getPathname = state => state.router.location.pathname;
 
 export const getSongId = createSelector(
   getPathname,
-  pathname => parseInt(pathname.split('/')[2])
+  pathname => parseInt(pathname.split('/')[2], 10)
 );

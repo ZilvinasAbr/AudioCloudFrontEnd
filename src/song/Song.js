@@ -12,20 +12,20 @@ import mockSongs from '../mockData/mockSongs';
 
 class Song extends Component {
   componentWillMount() {
-    const {id} = this.props;
+    const {fetchSong, id} = this.props;
 
-    // fetch song if needed
+    fetchSong(id);
   }
 
   componentWillReceiveProps(nextProps) {
-    const {id} = this.props;
+    const {fetchSong, id} = this.props;
     if (nextProps.id !== id) {
-      // fetch song if needed
+      fetchSong(id);
     }
   }
 
   render() {
-    const {id} = this.props;
+    const {id, song} = this.props;
 
     return (
       <Grid celled>
@@ -38,7 +38,7 @@ class Song extends Component {
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
             <MainSong
-              title={mockSongs[0].title}
+              title={song.title}
               imageUrl={mockSongs[0].imageUrl}
               likes={mockSongs[0].likes}
               plays={mockSongs[0].plays}
@@ -57,7 +57,9 @@ class Song extends Component {
 }
 
 Song.propTypes = {
-  id: PropTypes.number.isRequired
+  id: PropTypes.number.isRequired,
+  fetchSong: PropTypes.func.isRequired,
+  song: PropTypes.shape({})
 };
 
 export default Song;

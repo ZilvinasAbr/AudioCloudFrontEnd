@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Song from './Song';
 
-import {fetchSong} from '../actions/SongActions';
+import {fetchSongIfNeeded} from '../actions/SongActions';
 import {getSongId} from '../selectors/RouterSelectors';
 import {getSong} from '../selectors/SongSelectors';
 
@@ -16,5 +16,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  fetchSong
+  fetchSongIfNeeded
 })(SongContainer);

@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 
-import song from '../reducers/song';
+import entities from '../reducers/entities';
 
 const rootReducer = combineReducers({
-  song,
+  entities,
   router: routerReducer
 });
 

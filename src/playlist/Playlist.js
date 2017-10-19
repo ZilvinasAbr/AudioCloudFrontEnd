@@ -20,7 +20,7 @@ const Playlist = () => (
       <Grid.Column width={6} textAlign='center'>
         <MainSong
           title={mockSongs[0].title}
-          imageUrl={mockSongs[0].imageUrl}
+          pictureUrl={mockSongs[0].pictureUrl}
           likes={mockSongs[0].likes}
           plays={mockSongs[0].plays}
         />

@@ -5,10 +5,10 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-const MainSong = ({title, imageUrl, likes, plays}) => (
+const MainSong = ({title, pictureUrl, likes, plays}) => (
   <div>
     <Segment>
-      <Image src={imageUrl} size='large' centered/>
+      <Image src={pictureUrl} size='large' centered/>
     </Segment>
     <Segment.Group>
       <Segment>
@@ -24,7 +24,7 @@ const MainSong = ({title, imageUrl, likes, plays}) => (
 
 MainSong.propTypes = {
   title: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
+  pictureUrl: PropTypes.string.isRequired,
   likes: PropTypes.number.isRequired,
   plays: PropTypes.number.isRequired
 };

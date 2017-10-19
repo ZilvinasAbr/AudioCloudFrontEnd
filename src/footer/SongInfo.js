@@ -4,10 +4,10 @@ import {
   Item
 } from 'semantic-ui-react';
 
-const SongInfo = ({title, imageUrl, uploaderName, isLiked}) => (
+const SongInfo = ({title, pictureUrl, uploaderName, isLiked}) => (
   <Item.Group>
     <Item>
-      <Item.Image size='tiny' src={imageUrl}/>
+      <Item.Image size='tiny' src={pictureUrl}/>
       <Item.Content>
         <Item.Header>{title}</Item.Header>
         <Item.Description>
@@ -20,7 +20,7 @@ const SongInfo = ({title, imageUrl, uploaderName, isLiked}) => (
 
 SongInfo.propTypes = {
   title: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
+  pictureUrl: PropTypes.string.isRequired,
   uploaderName: PropTypes.string.isRequired
 };
 

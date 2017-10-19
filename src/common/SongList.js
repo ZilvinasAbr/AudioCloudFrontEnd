@@ -19,7 +19,7 @@ const SongList = ({title, songs}) => (
       <Item.Group divided>
         {songs.map((song, i) => (
           <Item key={i}>
-            <Item.Image size='tiny' src={song.imageUrl}/>
+            <Item.Image size='tiny' src={song.pictureUrl}/>
             <Item.Content>
               <Item.Header>{song.title}</Item.Header>
               <Item.Description>
@@ -38,7 +38,7 @@ SongList.propTypes = {
   songs: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     uploaderName: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired
+    pictureUrl: PropTypes.string.isRequired
   }))
 };
 

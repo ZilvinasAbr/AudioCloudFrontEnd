@@ -12,20 +12,24 @@ import mockSongs from '../mockData/mockSongs';
 
 class Song extends Component {
   componentWillMount() {
-    const {fetchSong, id} = this.props;
+    const {fetchSongIfNeeded, id} = this.props;
 
-    fetchSong(id);
+    fetchSongIfNeeded(id);
   }
 
   componentWillReceiveProps(nextProps) {
-    const {fetchSong, id} = this.props;
+    const {fetchSongIfNeeded, id} = this.props;
     if (nextProps.id !== id) {
-      fetchSong(id);
+      fetchSongIfNeeded(nextProps.id);
     }
   }
 
   render() {
-    const {id, song} = this.props;
+    const {song} = this.props;
+
+    if (!song) {
+      return <div>Loading...</div>;
+    }
 
     return (
       <Grid celled>
@@ -39,15 +43,15 @@ class Song extends Component {
           <Grid.Column width={6} textAlign='center'>
             <MainSong
               title={song.title}
-              imageUrl={mockSongs[0].imageUrl}
-              likes={mockSongs[0].likes}
-              plays={mockSongs[0].plays}
+              pictureUrl={song.pictureUrl}
+              likes={song.likes}
+              plays={song.plays}
             />
           </Grid.Column>
           <Grid.Column width={6}>
             <MainSongDescription
-              createdOn={mockSongs[0].createdOn}
-              description={mockSongs[0].description}
+              createdOn={song.uploadDate}
+              description={song.description}
             />
           </Grid.Column>
         </Grid.Row>
@@ -56,9 +60,13 @@ class Song extends Component {
   }
 }
 
+Song.defaultProps = {
+  song: null
+};
+
 Song.propTypes = {
   id: PropTypes.number.isRequired,
-  fetchSong: PropTypes.func.isRequired,
+  fetchSongIfNeeded: PropTypes.func.isRequired,
   song: PropTypes.shape({})
 };
 

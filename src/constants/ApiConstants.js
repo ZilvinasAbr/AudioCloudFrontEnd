@@ -1,0 +1,1 @@
+export const SONG_URL = '/api/songs/:id';

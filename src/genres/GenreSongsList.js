@@ -23,7 +23,7 @@ const GenreSongsList = ({songs}) => (
             <Feed.Extra>
               <Item.Group divided>
                 <Item key={i}>
-                  <Item.Image size='small' src={song.imageUrl}/>
+                  <Item.Image size='small' src={song.pictureUrl}/>
                   <Item.Content>
                     <Item.Header>{song.title}</Item.Header>
                     <Item.Description>
@@ -45,7 +45,7 @@ GenreSongsList.propTypes = {
   songs: PropTypes.arrayOf(PropTypes.shape({
     uploaderName: PropTypes.string.isRequired,
     createdOn: PropTypes.string.isRequired,
-    imageUrl: PropTypes.string.isRequired,
+    pictureUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     plays: PropTypes.number.isRequired,
     likes: PropTypes.number.isRequired

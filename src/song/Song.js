@@ -8,24 +8,24 @@ import MainSong from '../common/MainSong';
 import MainSongDescription from '../common/MainSongDescription';
 import SongList from '../common/SongList';
 
-import mockSongs from '../mockData/mockSongs';
-
 class Song extends Component {
   componentWillMount() {
-    const {fetchSongIfNeeded, id} = this.props;
+    const {fetchSongIfNeeded, fetchTrendingSongs, id} = this.props;
 
     fetchSongIfNeeded(id);
+    fetchTrendingSongs();
   }
 
   componentWillReceiveProps(nextProps) {
-    const {fetchSongIfNeeded, id} = this.props;
+    const {fetchSongIfNeeded, fetchTrendingSongs, id} = this.props;
     if (nextProps.id !== id) {
       fetchSongIfNeeded(nextProps.id);
+      fetchTrendingSongs();
     }
   }
 
   render() {
-    const {song} = this.props;
+    const {song, trendingSongs} = this.props;
 
     if (!song) {
       return <div>Loading...</div>;
@@ -37,7 +37,7 @@ class Song extends Component {
           <Grid.Column width={4}>
             <SongList
               title='Suggestions'
-              songs={mockSongs}
+              songs={trendingSongs}
             />
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
@@ -61,13 +61,15 @@ class Song extends Component {
 }
 
 Song.defaultProps = {
-  song: null
+  song: null,
+  trendingSongs: []
 };
 
 Song.propTypes = {
   id: PropTypes.number.isRequired,
   fetchSongIfNeeded: PropTypes.func.isRequired,
-  song: PropTypes.shape({})
+  song: PropTypes.shape({}),
+  trendingSongs: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
 export default Song;

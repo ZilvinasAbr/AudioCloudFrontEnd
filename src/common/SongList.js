@@ -23,7 +23,7 @@ const SongList = ({title, songs}) => (
             <Item.Content>
               <Item.Header>{song.title}</Item.Header>
               <Item.Description>
-                {song.uploaderName}
+                {song.user.name}
               </Item.Description>
             </Item.Content>
           </Item>
@@ -37,7 +37,9 @@ SongList.propTypes = {
   title: PropTypes.string,
   songs: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
-    uploaderName: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired
+    }),
     pictureUrl: PropTypes.string.isRequired
   }))
 };

@@ -2,6 +2,7 @@ import merge from 'lodash/merge';
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
+  events: {},
   playlists: {},
   songs: {},
   users: {}

@@ -15,7 +15,7 @@ const Header = ({userName}) => (
     <Menu borderless>
       <Container>
         <Menu.Item>
-          <Link to={paths.NEWS_FEED_PATH}><Button>Home</Button></Link>
+          <Link to={paths.HOME_PATH}><Button>Home</Button></Link>
         </Menu.Item>
         <Menu.Item>
           <Link to={paths.GENRES_PATH}><Button>Genres</Button></Link>

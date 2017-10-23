@@ -9,7 +9,7 @@ import MainSongDescription from '../common/MainSongDescription';
 import SongList from '../common/SongList';
 
 class Song extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const {fetchSongIfNeeded, fetchTrendingSongs, id} = this.props;
 
     fetchSongIfNeeded(id);
@@ -69,7 +69,8 @@ Song.propTypes = {
   id: PropTypes.number.isRequired,
   fetchSongIfNeeded: PropTypes.func.isRequired,
   song: PropTypes.shape({}),
-  trendingSongs: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  trendingSongs: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  fetchTrendingSongs: PropTypes.func.isRequired
 };
 
 export default Song;

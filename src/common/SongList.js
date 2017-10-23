@@ -4,6 +4,9 @@ import {
   Item,
   Segment
 } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
+
+import * as paths from '../constants/RouterConstants';
 
 const heightWithTitle = '558px';
 const heightWithoutTitle = '572px';
@@ -21,9 +24,9 @@ const SongList = ({title, songs}) => (
           <Item key={i}>
             <Item.Image size='tiny' src={song.pictureUrl}/>
             <Item.Content>
-              <Item.Header>{song.title}</Item.Header>
+              <Item.Header><Link to={paths.SONG_PATH.replace(':id', song.id)}>{song.title}</Link></Item.Header>
               <Item.Description>
-                {song.user.name}
+                {song && song.user && song.user.name}
               </Item.Description>
             </Item.Content>
           </Item>
@@ -36,6 +39,7 @@ const SongList = ({title, songs}) => (
 SongList.propTypes = {
   title: PropTypes.string,
   songs: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired

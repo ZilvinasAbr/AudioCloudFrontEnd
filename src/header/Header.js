@@ -8,21 +8,23 @@ import {
 } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
+import * as paths from '../constants/RouterConstants';
+
 const Header = ({userName}) => (
   <header>
     <Menu borderless>
       <Container>
         <Menu.Item>
-          <Link to="/home"><Button>Home</Button></Link>
+          <Link to={paths.NEWS_FEED_PATH}><Button>Home</Button></Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to="/genres"><Button>Genres</Button></Link>
+          <Link to={paths.GENRES_PATH}><Button>Genres</Button></Link>
         </Menu.Item>
         <Menu.Item>
           <Input icon='search' placeholder='Search...'/>
         </Menu.Item>
         <Menu.Item>
-          <Link to="/library"><Button>Library</Button></Link>
+          <Link to={paths.LIBRARY_PATH}><Button>Library</Button></Link>
         </Menu.Item>
         <Menu.Item>
           <Button>{userName}</Button>

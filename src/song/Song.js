@@ -18,7 +18,7 @@ class Song extends Component {
 
   componentWillReceiveProps(nextProps) {
     const {fetchSongIfNeeded, fetchTrendingSongs, id} = this.props;
-    if (nextProps.id !== id) {
+    if (nextProps.id && nextProps.id !== id) {
       fetchSongIfNeeded(nextProps.id);
       fetchTrendingSongs();
     }

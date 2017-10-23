@@ -27,7 +27,7 @@ class NewsFeed extends Component {
               songs={trendingSongs}
             />
           </Grid.Column>
-          <Grid.Column width={12}>
+          <Grid.Column width={8}>
             <EventsList events={events}/>
           </Grid.Column>
         </Grid.Row>

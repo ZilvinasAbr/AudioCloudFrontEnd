@@ -17,7 +17,7 @@ export const fetchLastWeekEventsSuccess = eventIds => ({
 
 export const fetchLastWeekEvents = () => async dispatch => {
   try {
-    const response = await api.get(LAST_WEEK_EVENTS_URL, null, true);
+    const response = await api.get(LAST_WEEK_EVENTS_URL, {authorized: true});
     const json = await response.json();
 
     const {entities, result} = normalize(json, [eventSchema]);

@@ -1,6 +1,6 @@
 import {getBackEndUrl} from './environmentConfig';
 
-export function get(url, headers, authorized) {
+export function get(url, {headers, authorized} = {}) {
   const baseUrl = getBackEndUrl();
 
   const params = {
@@ -11,7 +11,6 @@ export function get(url, headers, authorized) {
   };
 
   if (authorized) {
-    debugger;
     const accessToken = localStorage.getItem('access_token');
     params.headers.set('Authorization', `Bearer ${accessToken}`);
   }

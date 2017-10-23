@@ -6,6 +6,10 @@ import {
   Segment,
   Feed
 } from 'semantic-ui-react';
+import moment from 'moment';
+import {Link} from 'react-router-dom';
+
+import * as paths from '../constants/RouterConstants';
 
 const EventsList = ({events}) => (
   <Segment style={{height: '655px', overflow: 'auto'}}>
@@ -17,18 +21,19 @@ const EventsList = ({events}) => (
           </Feed.Label>
           <Feed.Content>
             <Feed.Summary>
-              <Feed.User>{event.uploaderName}</Feed.User> {event.eventText}
-              <Feed.Date>{event.createdOn}</Feed.Date>
+              <Feed.User>{event.user.name}</Feed.User> {event.eventType}
+              <Feed.Date>{moment(event.createdOn).format('MMM Do YYYY')}</Feed.Date>
             </Feed.Summary>
             <Feed.Extra>
               <Item.Group divided>
                 <Item key={i}>
-                  <Item.Image size='small' src={event.songImageUrl}/>
+                  <Item.Image size='small' src={event.song.pictureUrl}/>
                   <Item.Content>
-                    <Item.Header>{event.songTitle}</Item.Header>
+                    <Item.Header>
+                      <Link to={paths.SONG_PATH.replace(':id', event.song.id)}>{event.song.title}</Link>
+                    </Item.Header>
                     <Item.Description>
-                      <p>{event.uploaderName}</p>
-                      <p>{event.plays} Plays {event.likes} Likes</p>
+                      <p>{event.song.plays} Plays {event.song.likes} Likes</p>
                     </Item.Description>
                   </Item.Content>
                 </Item>
@@ -43,13 +48,18 @@ const EventsList = ({events}) => (
 
 EventsList.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape({
-    uploaderName: PropTypes.string.isRequired,
-    eventText: PropTypes.string.isRequired,
+    eventType: PropTypes.string.isRequired,
     createdOn: PropTypes.string.isRequired,
-    songImageUrl: PropTypes.string.isRequired,
-    songTitle: PropTypes.string.isRequired,
-    plays: PropTypes.number.isRequired,
-    likes: PropTypes.number.isRequired
+    song: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      pictureUrl: PropTypes.string.isRequired,
+      plays: PropTypes.number.isRequired,
+      likes: PropTypes.number.isRequired
+    }).isRequired,
+    user: PropTypes.shape({
+      name: PropTypes.string.isRequired
+    }).isRequired
   })).isRequired
 };
 

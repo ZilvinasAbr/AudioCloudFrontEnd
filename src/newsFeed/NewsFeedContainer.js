@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 
 import NewsFeed from './NewsFeed';
 
-import {fetchTrendingSongs} from '../actions/SongActions';
+import {fetchPopularSongs} from '../actions/SongActions';
 import {fetchLastWeekEvents} from '../actions/EventActions';
-import {getTrendingSongs} from '../selectors/SongSelectors';
+import {getPopularSongs} from '../selectors/SongSelectors';
 import {getLastWeekEvents} from '../selectors/EventSelectors';
 
 const NewsFeedContainer = props => <NewsFeed {...props} />;
 
 const mapStateToProps = (state) => ({
-  trendingSongs: getTrendingSongs(state),
+  popularSongs: getPopularSongs(state),
   events: getLastWeekEvents(state)
 });
 
 export default connect(mapStateToProps, {
-  fetchTrendingSongs,
+  fetchPopularSongs,
   fetchLastWeekEvents
 })(NewsFeedContainer);

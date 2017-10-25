@@ -3,14 +3,14 @@ import {routerReducer} from 'react-router-redux';
 
 import entities from './entities';
 import events from './events';
-import trendingSongs from './trendingSongs';
+import popularSongs from './popularSongs';
 import genres from './genres';
 
 const rootReducer = combineReducers({
   entities,
   events,
   genres,
-  trendingSongs,
+  popularSongs,
   router: routerReducer
 });
 

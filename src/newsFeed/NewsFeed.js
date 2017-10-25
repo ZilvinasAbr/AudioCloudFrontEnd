@@ -9,22 +9,22 @@ import SongList from '../common/SongList';
 
 class NewsFeed extends Component {
   componentDidMount() {
-    const {fetchTrendingSongs, fetchLastWeekEvents} = this.props;
+    const {fetchPopularSongs, fetchLastWeekEvents} = this.props;
 
     fetchLastWeekEvents();
-    fetchTrendingSongs();
+    fetchPopularSongs();
   }
 
   render() {
-    const {events, trendingSongs} = this.props;
+    const {events, popularSongs} = this.props;
 
     return (
       <Grid celled>
         <Grid.Row>
           <Grid.Column width={4}>
             <SongList
-              title='Trending'
-              songs={trendingSongs}
+              title='Popular'
+              songs={popularSongs}
             />
           </Grid.Column>
           <Grid.Column width={8}>
@@ -37,14 +37,14 @@ class NewsFeed extends Component {
 }
 
 NewsFeed.defaultProps = {
-  trendingSongs: [],
+  popularSongs: [],
   events: []
 };
 
 NewsFeed.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  trendingSongs: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  fetchTrendingSongs: PropTypes.func.isRequired,
+  popularSongs: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  fetchPopularSongs: PropTypes.func.isRequired,
   fetchLastWeekEvents: PropTypes.func.isRequired
 };
 

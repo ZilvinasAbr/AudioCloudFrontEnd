@@ -1,7 +1,7 @@
 import {normalize} from 'normalizr';
 
 import * as types from '../constants/ActionTypes';
-import {SONG_URL, TRENDING_SONGS_URL} from '../constants/ApiConstants';
+import {SONG_URL, POPULAR_SONGS_URL} from '../constants/ApiConstants';
 import * as api from '../apiService';
 import {songSchema} from '../constants/Schemas';
 
@@ -10,9 +10,9 @@ export const fetchSongsSuccess = entities => ({
   entities
 });
 
-export const fetchTrendingSongsSuccess = trendingSongIds => ({
-  type: types.FETCH_TRENDING_SONGS_SUCCESS,
-  trendingSongIds
+export const fetchPopularSongsSuccess = popularSongIds => ({
+  type: types.FETCH_POPULAR_SONGS_SUCCESS,
+  popularSongIds
 });
 
 export const fetchSong = id => async dispatch => {
@@ -42,16 +42,16 @@ export const fetchSongIfNeeded = (id) => (dispatch, getState) => {
   }
 };
 
-export const fetchTrendingSongs = () => async dispatch => {
+export const fetchPopularSongs = () => async dispatch => {
   try {
-    const response = await api.get(TRENDING_SONGS_URL);
+    const response = await api.get(POPULAR_SONGS_URL);
     const json = await response.json();
 
     const {entities, result} = normalize(json, [songSchema]);
 
     dispatch(fetchSongsSuccess(entities));
-    dispatch(fetchTrendingSongsSuccess(result));
+    dispatch(fetchPopularSongsSuccess(result));
   } catch (err) {
-    console.error('Could not fetch trending songs', err);
+    console.error('Could not fetch popular songs', err);
   }
 };

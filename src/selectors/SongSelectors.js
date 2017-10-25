@@ -5,7 +5,7 @@ import {songSchema} from '../constants/Schemas';
 import {getEntities} from '../selectors/CommonSelectors';
 import {getSongId} from '../selectors/RouterSelectors';
 
-const getTrendingSongIds = state => state.trendingSongs;
+const getPopularSongIds = state => state.popularSongs;
 
 export const getSong = createSelector(
   getEntities,
@@ -13,8 +13,8 @@ export const getSong = createSelector(
   (entities, id) => (id in entities.songs ? denormalize(id, songSchema, entities) : null)
 );
 
-export const getTrendingSongs = createSelector(
+export const getPopularSongs = createSelector(
   getEntities,
-  getTrendingSongIds,
-  (entities, trendingSongIds) => denormalize(trendingSongIds, [songSchema], entities)
+  getPopularSongIds,
+  (entities, popularSongIds) => denormalize(popularSongIds, [songSchema], entities)
 );

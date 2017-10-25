@@ -1,11 +1,9 @@
 import {normalize} from 'normalizr';
 
 import * as types from '../constants/ActionTypes';
-import {SONG_URL, TRENDING_SONGS_URL, GENRE_SONGS_URL} from '../constants/ApiConstants';
+import {SONG_URL, TRENDING_SONGS_URL} from '../constants/ApiConstants';
 import * as api from '../apiService';
 import {songSchema} from '../constants/Schemas';
-
-// import mockSongs from '../mockData/mockSongs';
 
 export const fetchSongsSuccess = entities => ({
   type: types.FETCH_SONGS_SUCCESS,

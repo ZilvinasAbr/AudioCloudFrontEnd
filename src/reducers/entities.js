@@ -3,6 +3,7 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   events: {},
+  genres: {},
   playlists: {},
   songs: {},
   users: {}

@@ -1,7 +1,7 @@
 import {normalize} from 'normalizr';
 
 import * as types from '../constants/ActionTypes';
-import {SONG_URL, TRENDING_SONGS_URL} from '../constants/ApiConstants';
+import {SONG_URL, TRENDING_SONGS_URL, GENRE_SONGS_URL} from '../constants/ApiConstants';
 import * as api from '../apiService';
 import {songSchema} from '../constants/Schemas';
 
@@ -55,5 +55,18 @@ export const fetchTrendingSongs = () => async dispatch => {
     dispatch(fetchTrendingSongsSuccess(result));
   } catch (err) {
     console.error('Could not fetch trending songs', err);
+  }
+};
+
+export const fetchGenreSongs = genreName => async dispatch => {
+  try {
+    const response = await api.get(GENRE_SONGS_URL.replace(':genreName', genreName));
+    const json = await response.json();
+
+    const {entities} = normalize(json, [songSchema]);
+
+    dispatch(fetchSongsSuccess(entities));
+  } catch (err) {
+    console.error('Could not fetch genre songs', err);
   }
 };

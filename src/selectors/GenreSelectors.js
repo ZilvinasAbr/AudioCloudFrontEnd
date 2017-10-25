@@ -1,13 +1,20 @@
-import {denormalize} from 'normalizr';
 import {createSelector} from 'reselect';
+import {denormalize} from 'normalizr';
 
-import {genreSchema} from '../constants/Schemas';
-import {getEntities} from '../selectors/CommonSelectors';
+import {getEntities} from './CommonSelectors';
+import {songSchema} from "../constants/Schemas";
 
-const getGenreIds = state => state.genres;
+export const getGenres = state => state.genres.genres;
+export const getActiveGenre = state => state.genres.activeGenre;
+export const getGenreSongIds = state => state.genres.genreSongIds;
 
-export const getGenres = createSelector(
+export const getGenreSongs = createSelector(
   getEntities,
-  getGenreIds,
-  (entities, genreIds) => denormalize(genreIds, [genreSchema], entities)
+  getGenres,
+  getActiveGenre,
+  getGenreSongIds,
+  (entities, genreNames, activeGenre, genreSongIds) => {
+    const songIds = genreSongIds[genreNames[activeGenre]];
+    return denormalize(songIds, [songSchema], entities);
+  }
 );

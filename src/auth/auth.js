@@ -19,7 +19,7 @@ class Auth {
           this.setSession(authResult);
           resolve(true);
         } else if (err) {
-          console.log(err);
+          console.error('Could not handle authentication', err);
           resolve(false);
         }
         resolve(false);

@@ -3,17 +3,19 @@ import {connect} from 'react-redux';
 
 import Genres from './Genres';
 
-import {fetchGenreSongs} from '../actions/SongActions';
-import {fetchGenres} from "../actions/GenreActions";
-import {getGenres} from '../selectors/GenreSelectors';
+import {fetchGenres, fetchGenreSongs, setActiveGenre} from "../actions/GenreActions";
+import {getGenres, getGenreSongs, getActiveGenre} from '../selectors/GenreSelectors';
 
 const GenresContainer = props => <Genres {...props} />;
 
 const mapStateToProps = (state) => ({
-  genres: getGenres(state)
+  genres: getGenres(state),
+  genreSongs: getGenreSongs(state),
+  activeGenre: getActiveGenre(state)
 });
 
 export default connect(mapStateToProps, {
   fetchGenres,
-  fetchGenreSongs
+  fetchGenreSongs,
+  setActiveGenre
 })(GenresContainer);

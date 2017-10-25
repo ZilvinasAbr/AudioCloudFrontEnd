@@ -12,7 +12,7 @@ const GenrePane = ({songs}) => (
 
 GenrePane.propTypes = {
   songs: PropTypes.arrayOf(
-    PropTypes.shape()
+    PropTypes.shape({})
   ).isRequired
 };
 

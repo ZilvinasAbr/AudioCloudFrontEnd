@@ -4,29 +4,42 @@ import {Container} from 'semantic-ui-react';
 
 import GenresTab from './GenresTab';
 
-import {genresWithSongs} from '../mockData/mockGenres';
-
 class Genres extends Component {
   async componentDidMount() {
-    const {genres, fetchGenres} = this.props;
+    const {genres, fetchGenres, setActiveGenre} = this.props;
     if (!genres.length) {
       await fetchGenres();
+      setActiveGenre(0);
     }
   }
 
   async componentWillReceiveProps(nextProps) {
-    const {genres, fetchGenreSongs} = this.props;
-    if (nextProps.genres.length !== genres.length) {
-      const indexGenre = nextProps.genres[0];
-      await fetchGenreSongs(indexGenre.name);
+    const {activeGenre, genres, fetchGenreSongs} = this.props;
+    if (nextProps.activeGenre !== activeGenre) {
+      const genreName = genres[nextProps.activeGenre];
+      await fetchGenreSongs(genreName);
     }
   }
 
+  onTabChange = async (event, {activeIndex}) => {
+    const {setActiveGenre} = this.props;
+    setActiveGenre(activeIndex);
+  };
+
   render() {
+    const {activeGenre, genres, genreSongs} = this.props;
+
+    if (!genres || !genres || activeGenre === null) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <Container>
         <GenresTab
-          genresWithSongs={genresWithSongs}
+          activeGenre={activeGenre}
+          genres={genres}
+          genreSongs={genreSongs}
+          onTabChange={this.onTabChange}
         />
       </Container>
     );
@@ -34,13 +47,18 @@ class Genres extends Component {
 }
 
 Genres.defaultProps = {
-  genres: []
+  genres: [],
+  genreSongs: [],
+  activeGenre: null
 };
 
 Genres.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genreSongs: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  activeGenre: PropTypes.number,
   fetchGenres: PropTypes.func.isRequired,
-  fetchGenreSongs: PropTypes.func.isRequired
+  fetchGenreSongs: PropTypes.func.isRequired,
+  setActiveGenre: PropTypes.func.isRequired
 };
 
 export default Genres;

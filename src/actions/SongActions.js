@@ -57,16 +57,3 @@ export const fetchTrendingSongs = () => async dispatch => {
     console.error('Could not fetch trending songs', err);
   }
 };
-
-export const fetchGenreSongs = genreName => async dispatch => {
-  try {
-    const response = await api.get(GENRE_SONGS_URL.replace(':genreName', genreName));
-    const json = await response.json();
-
-    const {entities} = normalize(json, [songSchema]);
-
-    dispatch(fetchSongsSuccess(entities));
-  } catch (err) {
-    console.error('Could not fetch genre songs', err);
-  }
-};

@@ -31,13 +31,13 @@ class Library extends Component {
 }
 
 Library.defaultProps = {
-  likes: [],
+  likes: null,
   uploaded: [],
   playlists: []
 };
 
 Library.propTypes = {
-  likes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  likes: PropTypes.shape({}).isRequired,
   uploaded: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   playlists: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   fetchLikedPlaylist: PropTypes.func.isRequired,

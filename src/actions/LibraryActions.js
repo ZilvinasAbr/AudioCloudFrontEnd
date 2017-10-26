@@ -31,6 +31,9 @@ export const fetchLikedPlaylist = () => async dispatch => {
       throw new Error(json);
     }
 
+    debugger;
+    json.id = 'LIKED_PLAYLIST';
+
     const {entities, result} = normalize(json, playlistSchema);
 
     dispatch(fetchSongsSuccess(entities));

@@ -32,11 +32,11 @@ class Song extends Component {
     }
 
     return (
-      <Grid celled>
+      <Grid celled style={{ marginTop: '5em', marginBottom: '10em' }}>
         <Grid.Row>
           <Grid.Column width={4}>
             <SongList
-              title='Suggestions'
+              title='Popular'
               songs={popularSongs}
             />
           </Grid.Column>

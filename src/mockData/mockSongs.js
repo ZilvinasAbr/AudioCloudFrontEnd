@@ -2,7 +2,9 @@ import _times from 'lodash/times';
 
 const songs = _times(10, i => ({
   title: 'Song Artist - Song Title (Artist Remix)',
-  uploaderName: 'Uploader Name',
+  user: {
+    name: 'Uploader Name'
+  },
   pictureUrl: '/image.png',
   likes: 5000,
   plays: 1000000,

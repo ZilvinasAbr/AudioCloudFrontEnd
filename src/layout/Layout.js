@@ -8,7 +8,7 @@ import mockUsers from '../mockData/mockUsers';
 const Layout = ({children}) => (
   <div>
     <Header
-      userName={mockUsers[0].userName}
+      user={mockUsers[0]}
     />
     {children}
     <Footer/>

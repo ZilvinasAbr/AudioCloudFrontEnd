@@ -10,7 +10,8 @@ song.define({
 });
 
 playlist.define({
-  songs: [song]
+  songs: [song],
+  user
 });
 
 event.define({

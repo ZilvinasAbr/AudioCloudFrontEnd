@@ -34,7 +34,7 @@ class Genres extends Component {
     }
 
     return (
-      <Container>
+      <Container style={{ marginTop: '5em', marginBottom: '10em' }}>
         <GenresTab
           activeGenre={activeGenre}
           genres={genres}

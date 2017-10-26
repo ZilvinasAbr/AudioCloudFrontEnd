@@ -10,7 +10,7 @@ import Authenticate from './auth/Authenticate';
 import Landing from './landing/Landing';
 import Playlist from './playlist/Playlist';
 import NewsFeedContainer from './newsFeed/NewsFeedContainer';
-import Library from './library/Library';
+import LibraryContainer from './library/LibraryContainer';
 import GenresContainer from './genres/GenresContainer';
 import SongContainer from './song/SongContainer';
 
@@ -23,7 +23,7 @@ const App = () => (
       <PrivateRoute path={paths.PLAYLIST_PATH} component={Playlist}/>
       <PrivateRoute path={paths.NEWS_FEED_PATH} component={NewsFeedContainer}/>
       <PrivateRoute path={paths.GENRES_PATH} component={GenresContainer}/>
-      <PrivateRoute path={paths.LIBRARY_PATH} component={Library}/>
+      <PrivateRoute path={paths.LIBRARY_PATH} component={LibraryContainer}/>
     </Layout>
     <Route path={paths.AUTHENTICATE_PATH} component={Authenticate}/>
   </div>

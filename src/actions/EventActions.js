@@ -20,6 +20,10 @@ export const fetchLastWeekEvents = () => async dispatch => {
     const response = await api.get(LAST_WEEK_EVENTS_URL, {authorized: true});
     const json = await response.json();
 
+    if (!response.ok) {
+      throw new Error(json);
+    }
+
     const {entities, result} = normalize(json, [eventSchema]);
 
     dispatch(fetchEventsSuccess(entities));

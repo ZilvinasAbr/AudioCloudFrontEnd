@@ -6,6 +6,8 @@ import {
   Image,
   Item
 } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
+import * as paths from '../constants/RouterConstants';
 
 const GenreSongsList = ({songs}) => (
   <Container>
@@ -25,7 +27,7 @@ const GenreSongsList = ({songs}) => (
                 <Item key={i}>
                   <Item.Image size='small' src={song.pictureUrl}/>
                   <Item.Content>
-                    <Item.Header>{song.title}</Item.Header>
+                    <Item.Header><Link to={paths.SONG_PATH.replace(':id', song.id)}>{song.title}</Link></Item.Header>
                     <Item.Description>
                       <p>{song.plays} Plays {song.likes} Likes</p>
                     </Item.Description>

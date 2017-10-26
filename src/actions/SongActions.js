@@ -20,6 +20,10 @@ export const fetchSong = id => async dispatch => {
     const response = await api.get(SONG_URL.replace(':id', id));
     const json = await response.json();
 
+    if (!response.ok) {
+      throw new Error(json);
+    }
+
     const {entities} = normalize(json, songSchema);
 
     dispatch(fetchSongsSuccess(entities));
@@ -46,6 +50,10 @@ export const fetchPopularSongs = () => async dispatch => {
   try {
     const response = await api.get(POPULAR_SONGS_URL);
     const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json);
+    }
 
     const {entities, result} = normalize(json, [songSchema]);
 

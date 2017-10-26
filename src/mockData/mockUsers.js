@@ -1,6 +1,6 @@
 const users = [
   {
-    userName: "User Name"
+    name: "User Name"
   }
 ];
 

@@ -10,9 +10,9 @@ import {Link} from 'react-router-dom';
 
 import * as paths from '../constants/RouterConstants';
 
-const Header = ({userName}) => (
+const Header = ({user}) => (
   <header>
-    <Menu borderless>
+    <Menu borderless fixed='top'>
       <Container>
         <Menu.Item>
           <Link to={paths.HOME_PATH}><Button>Home</Button></Link>
@@ -27,7 +27,7 @@ const Header = ({userName}) => (
           <Link to={paths.LIBRARY_PATH}><Button>Library</Button></Link>
         </Menu.Item>
         <Menu.Item>
-          <Button>{userName}</Button>
+          <Button>{user.name}</Button>
         </Menu.Item>
       </Container>
     </Menu>
@@ -35,7 +35,9 @@ const Header = ({userName}) => (
 );
 
 Header.propTypes = {
-  userName: PropTypes.string.isRequired
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default Header;

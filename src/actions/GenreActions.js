@@ -25,9 +25,13 @@ export const setActiveGenre = activeGenre => ({
 export const fetchGenres = () => async dispatch => {
   try {
     const response = await api.get(GENRES_URL);
-    const genres = await response.json();
+    const json = await response.json();
 
-    dispatch(fetchGenresSuccess(genres));
+    if (!response.ok) {
+      throw new Error(json);
+    }
+
+    dispatch(fetchGenresSuccess(json));
   } catch (err) {
     console.error('Could not fetch genres', err);
   }
@@ -37,6 +41,10 @@ export const fetchGenreSongs = genreName => async dispatch => {
   try {
     const response = await api.get(GENRE_SONGS_URL.replace(':genreName', genreName));
     const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json);
+    }
 
     const {entities, result} = normalize(json, [songSchema]);
 

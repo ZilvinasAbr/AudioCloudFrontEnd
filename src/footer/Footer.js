@@ -15,7 +15,7 @@ const Footer = () => (
         <Grid.Column width={4}>
           <SongInfo
             title={mockSongs[0].title}
-            uploaderName={mockSongs[0].uploaderName}
+            uploaderName={mockSongs[0].user.name}
             pictureUrl={mockSongs[0].pictureUrl}
           />
         </Grid.Column>

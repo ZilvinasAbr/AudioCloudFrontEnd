@@ -9,7 +9,7 @@ import SongList from '../common/SongList';
 import mockSongs from '../mockData/mockSongs';
 
 const Playlist = () => (
-  <Grid celled>
+  <Grid celled style={{ marginTop: '5em', marginBottom: '10em' }}>
     <Grid.Row>
       <Grid.Column width={4}>
         <SongList

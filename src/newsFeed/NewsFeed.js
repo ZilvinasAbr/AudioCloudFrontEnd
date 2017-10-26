@@ -19,7 +19,7 @@ class NewsFeed extends Component {
     const {events, popularSongs} = this.props;
 
     return (
-      <Grid celled>
+      <Grid celled style={{marginTop: '5em', marginBottom: '10em'}}>
         <Grid.Row>
           <Grid.Column width={4}>
             <SongList

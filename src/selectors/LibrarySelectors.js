@@ -4,15 +4,28 @@ import {createSelector} from 'reselect';
 import {songSchema, playlistSchema} from "../constants/Schemas";
 import {getEntities} from './CommonSelectors';
 
-export const getLikedIds = state => state.library.liked;
+export const getLikedPlaylistSongIds = state => state.library.liked.songs;
 export const getUploadedIds = state => state.library.uploaded;
 export const getPlaylistIds = state => state.library.playlists;
 
-export const getLikedSongs = createSelector(
+export const getLikedPlaylistWithSongIds = state => state.library.liked;
+
+export const getLikedPlaylist = createSelector(
   getEntities,
-  getLikedIds,
-  (entities, songIds) => denormalize(songIds, [songSchema], entities)
+  getLikedPlaylistWithSongIds,
+  (entities, playlistWithSongIds) => {
+    if (!playlistWithSongIds)
+      return null;
+
+    const songs = denormalize(playlistWithSongIds.songIds, [songSchema], entities);
+
+    return {
+      ...playlistWithSongIds,
+      songs
+    };
+  }
 );
+
 
 export const getUploadedSongs = createSelector(
   getEntities,

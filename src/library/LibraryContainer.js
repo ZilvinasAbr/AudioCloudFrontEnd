@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 import Library from './Library';
 
 import {fetchLikedPlaylist, fetchUploadedSongs, fetchUserPlaylists} from '../actions/LibraryActions';
-import {getLikedSongs, getUploadedSongs, getUserPlaylists} from '../selectors/LibrarySelectors';
+import {getLikedPlaylist, getUploadedSongs, getUserPlaylists} from '../selectors/LibrarySelectors';
 
 const LibraryContainer = props => <Library {...props} />;
 
 const mapStateToProps = (state) => ({
-  likes: getLikedSongs(state),
+  likedPlaylist: getLikedPlaylist(state),
   uploaded: getUploadedSongs(state),
   playlists: getUserPlaylists(state)
 });

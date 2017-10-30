@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
-  liked: [],
+  liked: null,
   uploaded: [],
   playlists: []
 };
@@ -9,9 +9,21 @@ const initialState = {
 export default function library(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_LIKED_PLAYLIST_SUCCESS:
+      const {
+        playlistName: name,
+        playlistDescription: description,
+        playlistIsPublic: isPublic,
+        songIds,
+        userId} = action;
       return {
         ...state,
-        liked: [...action.songIds]
+        liked: {
+          name,
+          description,
+          isPublic,
+          songIds,
+          userId
+        }
       };
     case types.FETCH_UPLOADED_SONGS_SUCCESS:
       return {

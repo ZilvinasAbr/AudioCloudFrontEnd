@@ -10,17 +10,17 @@ class Library extends Component {
   async componentDidMount() {
     const {fetchLikedPlaylist, fetchUploadedSongs, fetchUserPlaylists} = this.props;
     fetchLikedPlaylist();
-    fetchUploadedSongs();
-    fetchUserPlaylists();
+    fetchUploadedSongs('Test Client');
+    fetchUserPlaylists('Test Client');
   }
 
   render() {
-    const {likes} = this.props;
+    const {likedPlaylist} = this.props;
 
     return (
       <Container style={{ marginTop: '5em', marginBottom: '10em' }}>
         <Likes
-          likes={likes}
+          likedPlaylist={likedPlaylist}
           onShowAll={() => {}}
         />
         <Uploaded/>
@@ -31,13 +31,13 @@ class Library extends Component {
 }
 
 Library.defaultProps = {
-  likes: null,
+  likedPlaylist: null,
   uploaded: [],
   playlists: []
 };
 
 Library.propTypes = {
-  likes: PropTypes.shape({}).isRequired,
+  likedPlaylist: PropTypes.shape({}),
   uploaded: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   playlists: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   fetchLikedPlaylist: PropTypes.func.isRequired,

@@ -15,11 +15,9 @@ class Likes extends Component {
 
   render() {
     const {isShowingAll} = this.state;
-    const {likes} = this.props;
+    const {likedPlaylist} = this.props;
 
-    debugger;
-
-    if (!likes) {
+    if (!likedPlaylist) {
       return <div>Loading...</div>;
     }
 
@@ -28,7 +26,7 @@ class Likes extends Component {
         <Header as='h2'>Likes</Header>
         <Segment.Group horizontal>
           {
-            likes.songs.map((song, i) => (
+            likedPlaylist.songs.map((song, i) => (
               <Segment key={i}>
                 <Image size='tiny' src={song.pictureUrl}/>
                 <Header as='h5'>{song.title}</Header>
@@ -43,11 +41,11 @@ class Likes extends Component {
 }
 
 Likes.defaultProps = {
-  likes: null
+  likedPlaylist: null
 };
 
 Likes.propTypes = {
-  likes: PropTypes.shape({
+  likedPlaylist: PropTypes.shape({
     songs: PropTypes.arrayOf(PropTypes.shape({})).isRequired
   }),
   onShowAll: PropTypes.func.isRequired

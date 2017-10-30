@@ -1,14 +1,19 @@
 import {normalize} from 'normalizr';
 
 import * as types from '../constants/ActionTypes';
-import {songSchema, playlistSchema} from '../constants/Schemas';
+import {songSchema, playlistSchema, userSchema} from '../constants/Schemas';
 import * as api from '../apiService';
 import {LIKED_PLAYLIST_URL, USER_SONGS_URL, USER_PLAYLISTS_URL} from '../constants/ApiConstants';
 import {fetchSongsSuccess} from './SongActions';
 import {fetchPlaylistsSuccess} from "./PlaylistActions";
+import {fetchUsersSuccess} from "./UserActions";
 
-export const fetchLikedPlaylistSuccess = songIds => ({
+export const fetchLikedPlaylistSuccess = (playlistName, playlistDescription, playlistIsPublic, userId, songIds) => ({
   type: types.FETCH_LIKED_PLAYLIST_SUCCESS,
+  playlistName,
+  playlistDescription,
+  playlistIsPublic,
+  userId,
   songIds
 });
 
@@ -31,13 +36,14 @@ export const fetchLikedPlaylist = () => async dispatch => {
       throw new Error(json);
     }
 
-    debugger;
-    json.id = 'LIKED_PLAYLIST';
+    const {entities: songEntities, result: songIds} = normalize(json.songs, [songSchema]);
+    const {entities: userEntities, result: userId} = normalize(json.user, userSchema);
 
-    const {entities, result} = normalize(json, playlistSchema);
+    const {name: playlistName, description: playlistDescription, isPublic: playlistIsPublic} = json;
 
-    dispatch(fetchSongsSuccess(entities));
-    dispatch(fetchLikedPlaylistSuccess(result));
+    dispatch(fetchSongsSuccess(songEntities));
+    dispatch(fetchUsersSuccess(userEntities));
+    dispatch(fetchLikedPlaylistSuccess(playlistName, playlistDescription, playlistIsPublic, userId, songIds));
   } catch (err) {
     console.error('Could not fetch liked songs', err);
   }

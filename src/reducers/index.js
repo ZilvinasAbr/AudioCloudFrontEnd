@@ -6,6 +6,7 @@ import events from './events';
 import popularSongs from './popularSongs';
 import genres from './genres';
 import library from './library';
+import user from './user';
 
 const rootReducer = combineReducers({
   entities,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   genres,
   library,
   popularSongs,
+  user,
   router: routerReducer
 });
 

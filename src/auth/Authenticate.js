@@ -8,6 +8,7 @@ class Authenticate extends React.Component {
   };
 
   async componentDidMount() {
+    debugger;
     const isAuthenticated = await auth.handleAuthentication();
 
     this.setState({isAuthenticated});

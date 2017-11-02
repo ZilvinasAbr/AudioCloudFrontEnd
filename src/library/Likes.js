@@ -34,7 +34,9 @@ class Likes extends Component {
             ))
           }
         </Segment.Group>
-        {isShowingAll || <Button onClick={this.handleShowAll}>Show All</Button>}
+        <div>
+          {isShowingAll || <Button onClick={this.handleShowAll}>Show All</Button>}
+        </div>
       </Segment>
     )
   }

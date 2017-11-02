@@ -7,6 +7,7 @@ import popularSongs from './popularSongs';
 import genres from './genres';
 import library from './library';
 import user from './user';
+import playlist from './playlist';
 
 const rootReducer = combineReducers({
   entities,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   library,
   popularSongs,
   user,
+  playlist,
   router: routerReducer
 });
 

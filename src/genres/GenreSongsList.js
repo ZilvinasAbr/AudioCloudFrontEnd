@@ -44,7 +44,7 @@ const GenreSongsList = ({songs}) => (
 
 GenreSongsList.propTypes = {
   songs: PropTypes.arrayOf(PropTypes.shape({
-    uploaderName: PropTypes.string.isRequired,
+    user: PropTypes.shape({}).isRequired,
     createdOn: PropTypes.string.isRequired,
     pictureUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

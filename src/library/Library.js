@@ -15,7 +15,7 @@ class Library extends Component {
   }
 
   render() {
-    const {likedPlaylist} = this.props;
+    const {likedPlaylist, uploaded, playlists} = this.props;
 
     return (
       <Container style={{ marginTop: '5em', marginBottom: '10em' }}>
@@ -23,8 +23,14 @@ class Library extends Component {
           likedPlaylist={likedPlaylist}
           onShowAll={() => {}}
         />
-        <Uploaded/>
-        <Playlists/>
+        <Uploaded
+          songs={uploaded}
+          onShowAll={() => {}}
+        />
+        <Playlists
+          playlists={playlists}
+          onShowAll={() => {}}
+        />
       </Container>
     )
   }

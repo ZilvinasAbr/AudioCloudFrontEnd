@@ -1,6 +1,6 @@
 const environmentConfig = {
   development: {
-    backEndUrl: "http://localhost:54991",
+    backEndUrl: "http://localhost:5000",
     frontEndUrl: "http://localhost:3000"
   },
   production: {
@@ -8,7 +8,7 @@ const environmentConfig = {
     frontEndUrl: "https://audiocloud.surge.sh"
   },
   test: {
-    backEndUrl: "http://localhost:54991",
+    backEndUrl: "http://localhost:5000",
     frontEndUrl: "http://localhost:3000"
   }
 };

@@ -27,7 +27,7 @@ const Header = ({user}) => (
           <Link to={paths.LIBRARY_PATH}><Button>Library</Button></Link>
         </Menu.Item>
         <Menu.Item>
-          <Button>{user.name}</Button>
+          <Button>{user ? user.name : ''}</Button>
         </Menu.Item>
       </Container>
     </Menu>
@@ -35,9 +35,7 @@ const Header = ({user}) => (
 );
 
 Header.propTypes = {
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired
-  }).isRequired
+  user: PropTypes.shape({}).isRequired
 };
 
 export default Header;

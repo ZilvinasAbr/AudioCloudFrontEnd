@@ -7,3 +7,4 @@ export const GENRES_URL = '/api/genres';
 export const LIKED_PLAYLIST_URL = '/api/playlists/liked';
 export const USER_SONGS_URL = '/api/songs/user/:userName';
 export const USER_PLAYLISTS_URL = '/api/playlists/user/:userName';
+export const CURRENT_USER_URL = '/api/users/current';

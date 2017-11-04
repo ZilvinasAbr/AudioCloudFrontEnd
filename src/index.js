@@ -7,7 +7,8 @@ import createHistory from 'history/createBrowserHistory';
 import {ConnectedRouter} from 'react-router-redux';
 
 import configureStore from './store/configureStore';
-import App from './App';
+import RootContainer from './root/RootContainer';
+
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createHistory();
@@ -15,7 +16,7 @@ const history = createHistory();
 ReactDOM.render(
   <Provider store={configureStore({history})}>
     <ConnectedRouter history={history}>
-      <App/>
+      <RootContainer/>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root'));

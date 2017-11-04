@@ -5,7 +5,7 @@ import {
 
 import * as paths from './constants/RouterConstants';
 import PrivateRoute from './helpers/PrivateRoute';
-import Layout from './layout/Layout';
+import LayoutContainer from './layout/LayoutContainer';
 import Authenticate from './auth/Authenticate';
 import Landing from './landing/Landing';
 import PlaylistContainer from './playlist/PlaylistContainer';
@@ -17,14 +17,14 @@ import SongContainer from './song/SongContainer';
 const App = () => (
   <div>
     <Route exact path="/" component={Landing}/>
-    <Layout>
+    <LayoutContainer>
       <PrivateRoute path={paths.SONG_PATH} component={SongContainer}/>
       <PrivateRoute path={paths.PLAYLIST_PATH} component={PlaylistContainer} />
       <PrivateRoute path={paths.HOME_PATH} component={NewsFeedContainer}/>
       <PrivateRoute path={paths.NEWS_FEED_PATH} component={NewsFeedContainer}/>
       <PrivateRoute path={paths.GENRES_PATH} component={GenresContainer}/>
       <PrivateRoute path={paths.LIBRARY_PATH} component={LibraryContainer}/>
-    </Layout>
+    </LayoutContainer>
     <Route path={paths.AUTHENTICATE_PATH} component={Authenticate}/>
   </div>
 );

@@ -8,10 +8,12 @@ import Playlists from './Playlists';
 
 class Library extends Component {
   async componentDidMount() {
-    const {fetchLikedPlaylist, fetchUploadedSongs, fetchUserPlaylists} = this.props;
+    const {currentUser, fetchLikedPlaylist, fetchUploadedSongs, fetchUserPlaylists} = this.props;
+    const {name} = currentUser;
+
     fetchLikedPlaylist();
-    fetchUploadedSongs('Test Client');
-    fetchUserPlaylists('Test Client');
+    fetchUploadedSongs(name);
+    fetchUserPlaylists(name);
   }
 
   render() {
@@ -39,16 +41,18 @@ class Library extends Component {
 Library.defaultProps = {
   likedPlaylist: null,
   uploaded: [],
-  playlists: []
+  playlists: [],
+  currentUser: null
 };
 
 Library.propTypes = {
   likedPlaylist: PropTypes.shape({}),
   uploaded: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   playlists: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  currentUser: PropTypes.shape({}).isRequired,
   fetchLikedPlaylist: PropTypes.func.isRequired,
   fetchUploadedSongs: PropTypes.func.isRequired,
-  fetchUserPlaylists: PropTypes.func.isRequired
+  fetchUserPlaylists: PropTypes.func.isRequired,
 };
 
 export default Library;

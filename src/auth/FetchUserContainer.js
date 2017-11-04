@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import {fetchCurrentUser} from '../actions/UserActions';
 import {getCurrentUser} from '../selectors/UserSelectors';
-import Root from './Root';
+import FetchUser from './FetchUser';
 
-const RootContainer = props => <Root {...props} />;
+const FetchUserContainer = props => <FetchUser {...props} />;
 
 const mapStateToProps = state => ({
   currentUser: getCurrentUser(state)
@@ -13,4 +13,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   fetchCurrentUser
-})(RootContainer);
+})(FetchUserContainer);

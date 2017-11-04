@@ -7,6 +7,8 @@ import {
   Item
 } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
+
 import * as paths from '../constants/RouterConstants';
 
 const GenreSongsList = ({songs}) => (
@@ -20,7 +22,7 @@ const GenreSongsList = ({songs}) => (
           <Feed.Content>
             <Feed.Summary>
               <Feed.User>{song.user.name}</Feed.User>
-              <Feed.Date>{song.createdOn}</Feed.Date>
+              <Feed.Date>{moment(song.uploadDate).format('MMM Do YYYY')}</Feed.Date>
             </Feed.Summary>
             <Feed.Extra>
               <Item.Group divided>
@@ -45,7 +47,7 @@ const GenreSongsList = ({songs}) => (
 GenreSongsList.propTypes = {
   songs: PropTypes.arrayOf(PropTypes.shape({
     user: PropTypes.shape({}).isRequired,
-    createdOn: PropTypes.string.isRequired,
+    uploadDate: PropTypes.string.isRequired,
     pictureUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     plays: PropTypes.number.isRequired,

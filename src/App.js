@@ -13,18 +13,21 @@ import NewsFeedContainer from './newsFeed/NewsFeedContainer';
 import LibraryContainer from './library/LibraryContainer';
 import GenresContainer from './genres/GenresContainer';
 import SongContainer from './song/SongContainer';
+import FetchUserContainer from './auth/FetchUserContainer';
 
 const App = () => (
   <div>
     <Route exact path="/" component={Landing}/>
-    <LayoutContainer>
-      <PrivateRoute path={paths.SONG_PATH} component={SongContainer}/>
-      <PrivateRoute path={paths.PLAYLIST_PATH} component={PlaylistContainer} />
-      <PrivateRoute path={paths.HOME_PATH} component={NewsFeedContainer}/>
-      <PrivateRoute path={paths.NEWS_FEED_PATH} component={NewsFeedContainer}/>
-      <PrivateRoute path={paths.GENRES_PATH} component={GenresContainer}/>
-      <PrivateRoute path={paths.LIBRARY_PATH} component={LibraryContainer}/>
-    </LayoutContainer>
+    <FetchUserContainer>
+      <LayoutContainer>
+        <PrivateRoute path={paths.SONG_PATH} component={SongContainer}/>
+        <PrivateRoute path={paths.PLAYLIST_PATH} component={PlaylistContainer} />
+        <PrivateRoute path={paths.HOME_PATH} component={NewsFeedContainer}/>
+        <PrivateRoute path={paths.NEWS_FEED_PATH} component={NewsFeedContainer}/>
+        <PrivateRoute path={paths.GENRES_PATH} component={GenresContainer}/>
+        <PrivateRoute path={paths.LIBRARY_PATH} component={LibraryContainer}/>
+      </LayoutContainer>
+    </FetchUserContainer>
     <Route path={paths.AUTHENTICATE_PATH} component={Authenticate}/>
   </div>
 );

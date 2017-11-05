@@ -13,3 +13,8 @@ export const getPlaylistSongId = createSelector(
 );
 
 export const getPlaylistId = getSongId;
+
+export const getSearchQuery = createSelector(
+  getPathname,
+  pathname => pathname.split('/')[3]
+);

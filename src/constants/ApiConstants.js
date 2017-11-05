@@ -1,4 +1,5 @@
 export const SONG_URL = '/api/songs/:id';
+export const SEARCH_SONGS_URL = '/api/songs/search/:query';
 export const PLAYLIST_URL = '/api/playlists/:id';
 export const POPULAR_SONGS_URL = '/api/songs/popular';
 export const GENRE_SONGS_URL = '/api/songs/genre/:genreName';

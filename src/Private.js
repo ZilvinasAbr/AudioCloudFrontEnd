@@ -9,6 +9,7 @@ import LibraryContainer from './library/LibraryContainer';
 import GenresContainer from './genres/GenresContainer';
 import SongContainer from './song/SongContainer';
 import FetchUserContainer from './auth/FetchUserContainer';
+import SearchContainer from './search/SearchContainer';
 
 const Private = () => (
   <FetchUserContainer>
@@ -19,6 +20,7 @@ const Private = () => (
       <PrivateRoute path={paths.NEWS_FEED_PATH} component={NewsFeedContainer}/>
       <PrivateRoute path={paths.GENRES_PATH} component={GenresContainer}/>
       <PrivateRoute path={paths.LIBRARY_PATH} component={LibraryContainer}/>
+      <PrivateRoute path={paths.SEARCH_PATH} component={SearchContainer}/>
     </LayoutContainer>
   </FetchUserContainer>
 );

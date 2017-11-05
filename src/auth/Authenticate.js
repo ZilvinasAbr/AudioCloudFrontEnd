@@ -3,6 +3,7 @@ import auth from './auth';
 import {Redirect} from 'react-router-dom';
 
 import * as paths from '../constants/RouterConstants';
+import {registerUser} from '../actions/UserActions';
 
 class Authenticate extends React.Component {
   state = {
@@ -11,6 +12,11 @@ class Authenticate extends React.Component {
 
   async componentDidMount() {
     const isAuthenticated = await auth.handleAuthentication();
+    debugger;
+    if (isAuthenticated) {
+      await registerUser()();
+    }
+
     this.setState({isAuthenticated});
   }
 

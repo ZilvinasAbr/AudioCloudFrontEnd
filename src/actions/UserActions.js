@@ -2,7 +2,10 @@ import {normalize} from 'normalizr';
 import {push} from 'react-router-redux';
 
 import * as types from '../constants/ActionTypes';
-import {CURRENT_USER_URL} from '../constants/ApiConstants';
+import {
+  CURRENT_USER_URL,
+  REGISTER_USER_URL
+} from '../constants/ApiConstants';
 import * as api from '../apiService';
 import * as paths from '../constants/RouterConstants';
 import {userSchema} from '../constants/Schemas';
@@ -33,11 +36,24 @@ export const fetchCurrentUser = () => async dispatch => {
 
     const {entities, result: id} = normalize(json, userSchema);
 
-    // dispatch(fetchCurrentUserSuccess(id));
     dispatch(fetchUsersSuccess(entities));
     dispatch(fetchCurrentUserSuccess(id));
   } catch (err) {
     console.error('Could not fetch a song', err);
+  }
+};
+
+export const registerUser = () => async () => {
+  try {
+    const response = await api.post(REGISTER_USER_URL, {authorized: true});
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json);
+    }
+
+  } catch (err) {
+    console.error('Could not register a user', err);
   }
 };
 

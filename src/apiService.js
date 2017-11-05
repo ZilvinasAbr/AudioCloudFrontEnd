@@ -18,7 +18,7 @@ export function get(url, {headers, authorized} = {}) {
   return fetch(`${baseUrl}${url}`, params);
 }
 
-export function post(url, body) {
+export function post(url, {body, authorized}) {
   const baseUrl = getBackEndUrl();
   
     const params = {
@@ -28,6 +28,11 @@ export function post(url, body) {
       mode: 'cors',
       cache: 'default'
     };
+
+    if (authorized) {
+      const accessToken = localStorage.getItem('access_token');
+      params.headers.set('Authorization', `Bearer ${accessToken}`);
+    }
   
     return fetch(`${baseUrl}${url}`, params);
 }

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-  Grid
+  Grid,
+  Loader
 } from 'semantic-ui-react';
 
 import * as paths from '../constants/RouterConstants';
@@ -27,7 +28,7 @@ class Playlist extends Component {
     const {playlist, currentSong} = this.props;
 
     if (!playlist) {
-      return <div>Loading...</div>;
+      return <Loader active/>;
     }
 
     const songUrls = playlist.songs.map(s => paths.PLAYLIST_SONG_PATH

@@ -14,5 +14,15 @@ export const getPlaylist = createSelector(
 export const getCurrentSong = createSelector(
   getEntities,
   getPlaylistSongId,
-  (entities, songId) => songId in entities.songs ? denormalize(songId, songSchema, entities) : null
+  getPlaylist,
+  (entities, songId, playlist) => {
+    if (!playlist)
+      return null;
+    if (!songId) {
+      const defaultSong = playlist.songs[0];
+      return denormalize(defaultSong.id, songSchema, entities);
+    }
+
+    return songId in entities.songs ? denormalize(songId, songSchema, entities) : null;
+  }
 );

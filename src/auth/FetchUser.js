@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {Loader} from 'semantic-ui-react';
 
 class FetchUser extends Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ class FetchUser extends Component {
     const {children, currentUser} = this.props;
 
     if (!currentUser) {
-      return <div>Loading...</div>;
+      return <Loader active/>;
     }
 
     return children;

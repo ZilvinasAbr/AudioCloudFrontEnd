@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Header, Image, Segment} from 'semantic-ui-react';
+import {Button, Header, Image, Loader, Segment} from 'semantic-ui-react';
 
 class Likes extends Component {
   state = {
@@ -18,7 +18,7 @@ class Likes extends Component {
     const {likedPlaylist} = this.props;
 
     if (!likedPlaylist) {
-      return <div>Loading...</div>;
+      return <Loader active/>;
     }
 
     return (

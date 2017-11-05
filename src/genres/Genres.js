@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Container} from 'semantic-ui-react';
+import {Container, Loader} from 'semantic-ui-react';
 
 import GenresTab from './GenresTab';
 
@@ -30,7 +30,7 @@ class Genres extends Component {
     const {activeGenre, genres, genreSongs} = this.props;
 
     if (!genres || !genres || activeGenre === null) {
-      return <div>Loading...</div>;
+      return <Loader active/>;
     }
 
     return (

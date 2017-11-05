@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {Button, Header, Image, Segment} from 'semantic-ui-react';
+import {Button, Header, Image, Loader, Segment} from 'semantic-ui-react';
 
 import * as paths from '../constants/RouterConstants';
 
@@ -21,7 +21,7 @@ class Playlists extends Component {
     const {playlists} = this.props;
 
     if (!playlists) {
-      return <div>Loading...</div>;
+      return <Loader active/>;
     }
 
     return (

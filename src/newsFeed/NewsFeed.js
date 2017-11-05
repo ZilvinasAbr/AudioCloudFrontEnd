@@ -4,6 +4,7 @@ import {
   Grid,
 } from 'semantic-ui-react';
 
+import * as paths from '../constants/RouterConstants';
 import EventsList from './EventsList';
 import SongList from '../common/SongList';
 
@@ -17,6 +18,7 @@ class NewsFeed extends Component {
 
   render() {
     const {events, popularSongs} = this.props;
+    const songUrls = popularSongs.map(s => paths.SONG_PATH.replace(':id', s.id));
 
     return (
       <Grid celled style={{marginTop: '5em', marginBottom: '10em'}}>
@@ -25,6 +27,7 @@ class NewsFeed extends Component {
             <SongList
               title='Popular'
               songs={popularSongs}
+              songUrls={songUrls}
             />
           </Grid.Column>
           <Grid.Column width={8}>

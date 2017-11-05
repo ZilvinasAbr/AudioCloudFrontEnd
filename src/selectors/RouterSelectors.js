@@ -7,4 +7,9 @@ export const getSongId = createSelector(
   pathname => parseInt(pathname.split('/')[2], 10)
 );
 
+export const getPlaylistSongId = createSelector(
+  getPathname,
+  pathname => parseInt(pathname.split('/')[3], 10)
+);
+
 export const getPlaylistId = getSongId;

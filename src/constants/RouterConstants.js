@@ -1,5 +1,6 @@
 export const SONG_PATH = '/songs/:id';
 export const PLAYLIST_PATH = '/playlists/:playlistId';
+export const PLAYLIST_SONG_PATH = '/playlists/:playlistId/:songId';
 export const HOME_PATH = '/home';
 export const NEWS_FEED_PATH = '/newsFeed';
 export const GENRES_PATH = '/genres';

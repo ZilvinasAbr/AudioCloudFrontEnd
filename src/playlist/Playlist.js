@@ -4,6 +4,7 @@ import {
   Grid
 } from 'semantic-ui-react';
 
+import * as paths from '../constants/RouterConstants';
 import MainSong from '../common/MainSong';
 import MainSongDescription from '../common/MainSongDescription';
 import SongList from '../common/SongList';
@@ -23,11 +24,15 @@ class Playlist extends Component {
   }
 
   render() {
-    const {playlist} = this.props;
+    const {playlist, currentSong} = this.props;
 
     if (!playlist) {
       return <div>Loading...</div>;
     }
+
+    const songUrls = playlist.songs.map(s => paths.PLAYLIST_SONG_PATH
+      .replace(':playlistId', playlist.id)
+      .replace(':songId', s.id));
 
     return (
       <Grid celled style={{ marginTop: '5em', marginBottom: '10em' }}>
@@ -36,20 +41,21 @@ class Playlist extends Component {
             <SongList
               title={playlist.name}
               songs={playlist.songs}
+              songUrls={songUrls}
             />
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
             <MainSong
-              title={playlist.songs[0].title}
-              pictureUrl={playlist.songs[0].pictureUrl}
-              likes={playlist.songs[0].likes}
-              plays={playlist.songs[0].plays}
+              title={currentSong.title}
+              pictureUrl={currentSong.pictureUrl}
+              likes={currentSong.likes}
+              plays={currentSong.plays}
             />
           </Grid.Column>
           <Grid.Column width={6}>
             <MainSongDescription
-              createdOn={playlist.songs[0].uploadDate}
-              description={playlist.songs[0].description}
+              createdOn={currentSong.uploadDate}
+              description={currentSong.description}
             />
           </Grid.Column>
         </Grid.Row>
@@ -59,7 +65,8 @@ class Playlist extends Component {
 }
 
 Playlist.defaultProps = {
-  playlist: null
+  playlist: null,
+  currentSong: null
 };
 
 Playlist.propTypes = {
@@ -68,7 +75,8 @@ Playlist.propTypes = {
   playlist: PropTypes.shape({
     name: PropTypes.string.isRequired,
     songs: PropTypes.arrayOf(PropTypes.shape({}))
-  })
+  }),
+  currentSong: PropTypes.shape({})
 };
 
 export default Playlist;

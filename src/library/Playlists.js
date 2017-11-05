@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {Button, Header, Image, Segment} from 'semantic-ui-react';
+
+import * as paths from '../constants/RouterConstants';
 
 class Playlists extends Component {
   state = {
@@ -29,7 +32,9 @@ class Playlists extends Component {
             playlists.map((playlist, i) => (
               <Segment key={i}>
                 <Image size='tiny' src={playlist.songs[0].pictureUrl}/>
-                <Header as='h5'>{playlist.name}</Header>
+                <Header as='h5'>
+                  <Link to={paths.PLAYLIST_PATH.replace(':playlistId', playlist.id)}>{playlist.name}</Link>
+                </Header>
               </Segment>
             ))
           }

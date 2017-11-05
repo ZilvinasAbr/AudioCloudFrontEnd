@@ -1,5 +1,7 @@
 import {normalize} from 'normalizr';
+import {push} from 'react-router-redux';
 
+import * as paths from '../constants/RouterConstants';
 import * as types from '../constants/ActionTypes';
 import {fetchSongsSuccess} from './SongActions';
 import {SEARCH_SONGS_URL} from '../constants/ApiConstants';
@@ -27,4 +29,8 @@ export const fetchSearchSongs = query => async dispatch => {
   } catch (err) {
     console.error('Could not search songs', err);
   }
+};
+
+export const goToSearchSongs = query => async dispatch => {
+  dispatch(push(paths.SEARCH_PATH.replace(':query', query)));
 };

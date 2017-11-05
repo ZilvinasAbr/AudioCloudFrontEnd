@@ -8,13 +8,20 @@ import {
 
 import * as paths from '../constants/RouterConstants';
 import SongList from '../common/SongList';
-import GenreSongsList from '../genres/GenreSongsList';
+import SearchResults from './SearchResults';
 
 class Search extends Component {
   componentDidMount() {
     const {fetchSearchSongs, fetchPopularSongs, query} = this.props;
     fetchPopularSongs();
     fetchSearchSongs(query);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {fetchSearchSongs, query} = this.props;
+    if (nextProps.query !== query) {
+      fetchSearchSongs(nextProps.query);
+    }
   }
 
   render() {
@@ -38,7 +45,7 @@ class Search extends Component {
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
             <Header>Search results for: "{query}"</Header>
-            <GenreSongsList songs={songsFound}/>
+            <SearchResults songs={songsFound}/>
           </Grid.Column>
           <Grid.Column width={6}>
           </Grid.Column>

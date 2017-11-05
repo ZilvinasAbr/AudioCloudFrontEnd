@@ -4,14 +4,14 @@ import {
   Button,
   Container,
   Dropdown,
-  Input,
   Menu
 } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
+import SearchInput from './SearchInput';
 import * as paths from '../constants/RouterConstants';
 
-const Header = ({user, logout}) => (
+const Header = ({user, onSearch, logout}) => (
   <header>
     <Menu borderless fixed='top'>
       <Container>
@@ -22,7 +22,7 @@ const Header = ({user, logout}) => (
           <Link to={paths.GENRES_PATH}><Button>Genres</Button></Link>
         </Menu.Item>
         <Menu.Item>
-          <Input icon='search' placeholder='Search...'/>
+          <SearchInput onSearch={onSearch} />
         </Menu.Item>
         <Menu.Item>
           <Link to={paths.LIBRARY_PATH}><Button>Library</Button></Link>
@@ -41,7 +41,8 @@ const Header = ({user, logout}) => (
 
 Header.propTypes = {
   user: PropTypes.shape({}).isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired
 };
 
 export default Header;

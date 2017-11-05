@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {Redirect} from 'react-router-dom';
 import {Loader} from 'semantic-ui-react';
+
+import * as paths from '../constants/RouterConstants';
+import auth from '../auth/auth';
 
 class FetchUser extends Component {
   componentDidMount() {
@@ -10,6 +14,12 @@ class FetchUser extends Component {
 
   render() {
     const {children, currentUser} = this.props;
+
+    if (!auth.isAuthenticated()) {
+      return <Redirect to={{
+        pathname: paths.LANDING_PATH
+      }}/>
+    }
 
     if (!currentUser) {
       return <Loader active/>;

@@ -6,7 +6,7 @@ export default function popularSongs(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_POPULAR_SONGS_SUCCESS:
       return action.popularSongIds;
-    case types.LOGOUT:
+    case types.LOGOUT_SUCCESS:
       return [];
     default:
       return state;

@@ -25,7 +25,7 @@ export default function genres(state = initialState, action) {
         ...state,
         activeGenre: action.activeGenre
       };
-    case types.LOGOUT:
+    case types.LOGOUT_SUCCESS:
       return initialState;
     default:
       return state;

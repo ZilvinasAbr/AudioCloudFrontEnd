@@ -15,7 +15,7 @@ export default function entities(state = initialState, action) {
   }
 
   switch (action.type) {
-    case types.LOGOUT:
+    case types.LOGOUT_SUCCESS:
       return {
         ...state,
         playlists: {}

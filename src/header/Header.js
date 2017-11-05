@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Button,
   Container,
+  Dropdown,
   Input,
   Menu
 } from 'semantic-ui-react';
@@ -10,7 +11,7 @@ import {Link} from 'react-router-dom';
 
 import * as paths from '../constants/RouterConstants';
 
-const Header = ({user}) => (
+const Header = ({user, logout}) => (
   <header>
     <Menu borderless fixed='top'>
       <Container>
@@ -27,7 +28,11 @@ const Header = ({user}) => (
           <Link to={paths.LIBRARY_PATH}><Button>Library</Button></Link>
         </Menu.Item>
         <Menu.Item>
-          <Button>{user ? user.name : ''}</Button>
+          <Dropdown button text={user ? user.name : ''}>
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={logout}>Log Out</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </Menu.Item>
       </Container>
     </Menu>
@@ -35,7 +40,8 @@ const Header = ({user}) => (
 );
 
 Header.propTypes = {
-  user: PropTypes.shape({}).isRequired
+  user: PropTypes.shape({}).isRequired,
+  logout: PropTypes.func.isRequired
 };
 
 export default Header;

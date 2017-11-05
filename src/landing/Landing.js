@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 
+import * as paths from '../constants/RouterConstants';
 import auth from '../auth/auth';
 
 class Landing extends React.Component {
@@ -18,7 +19,7 @@ class Landing extends React.Component {
 
   render() {
     return this.state.redirect ? <Redirect to={{
-      pathname: '/home'
+      pathname: paths.HOME_PATH
     }}/> : null;
   }
 }

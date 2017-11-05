@@ -35,7 +35,7 @@ export default function library(state = initialState, action) {
         ...state,
         playlists: [...action.playlistIds]
       };
-    case types.LOGOUT:
+    case types.LOGOUT_SUCCESS:
       return initialState;
     default:
       return state;

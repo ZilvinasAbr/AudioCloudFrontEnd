@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {Button, Header, Image, Loader, Segment} from 'semantic-ui-react';
+
+import * as paths from '../constants/RouterConstants';
 
 class Likes extends Component {
   state = {
@@ -18,7 +21,7 @@ class Likes extends Component {
     const {likedPlaylist} = this.props;
 
     if (!likedPlaylist) {
-      return <Loader active/>;
+      return <Loader active inline/>;
     }
 
     return (
@@ -29,7 +32,9 @@ class Likes extends Component {
             likedPlaylist.songs.map((song, i) => (
               <Segment key={i}>
                 <Image size='tiny' src={song.pictureUrl}/>
-                <Header as='h5'>{song.title}</Header>
+                <Header as='h5'>
+                  <Link to={paths.SONG_PATH.replace(':id', song.id)}>{song.title}</Link>
+                </Header>
               </Segment>
             ))
           }

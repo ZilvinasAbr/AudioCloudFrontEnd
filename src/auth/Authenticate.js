@@ -12,7 +12,7 @@ class Authenticate extends React.Component {
 
   async componentDidMount() {
     const isAuthenticated = await auth.handleAuthentication();
-    debugger;
+
     if (isAuthenticated) {
       await registerUser()();
     }

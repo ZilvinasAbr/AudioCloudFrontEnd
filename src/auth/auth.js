@@ -1,8 +1,12 @@
 import auth0 from 'auth0-js';
 
-import {getFrontEndUrl} from '../environmentConfig';
+import {getFrontEndUrl, getBackEndUrl} from '../environmentConfig';
 
 class Auth {
+  constructor() {
+    this.scheduleRenewal();
+  }
+
   auth0 = new auth0.WebAuth({
     domain: 'audiocloud.eu.auth0.com',
     clientID: 'BEeX4kOf2D8EPcaODbNEQ4jFX5gacBSb',
@@ -33,6 +37,9 @@ class Auth {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+
+    // schedule a token renewal
+    this.scheduleRenewal();
   };
 
   logout = () => {
@@ -40,6 +47,8 @@ class Auth {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+
+    clearTimeout(this.tokenRenewalTimeout);
   };
 
   login() {
@@ -52,6 +61,33 @@ class Auth {
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   };
+
+  renewToken() {
+    this.auth0.renewAuth(
+      {
+        audience: 'saitynoprojektas.azurewebsites.net',
+        redirectUri: `${getBackEndUrl()}/silent`,
+        usePostMessage: true
+      }, (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          this.setSession(result);
+        }
+      }
+    );
+  }
+
+  scheduleRenewal() {
+    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    const delay = expiresAt - Date.now();
+    if (delay > 0) {
+      this.tokenRenewalTimeout = setTimeout(() => {
+        this.renewToken();
+      }, delay);
+    }
+  }
 }
+
 
 export default new Auth();

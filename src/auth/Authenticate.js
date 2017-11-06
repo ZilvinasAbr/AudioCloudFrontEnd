@@ -1,6 +1,7 @@
 import React from 'react';
 import auth from './auth';
 import {Redirect} from 'react-router-dom';
+import {Loader} from 'semantic-ui-react';
 
 import * as paths from '../constants/RouterConstants';
 import {registerUser} from '../actions/UserActions';
@@ -25,7 +26,7 @@ class Authenticate extends React.Component {
 
     return isAuthenticated ? <Redirect to={{
       pathname: paths.HOME_PATH
-    }}/> : <div/>;
+    }}/> : <Loader active/>;
   }
 }
 

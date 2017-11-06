@@ -1,3 +1,5 @@
+import {getBackEndUrl} from "../environmentConfig";
+
 export const SONG_URL = '/api/songs/:id';
 export const SEARCH_SONGS_URL = '/api/songs/search/:query';
 export const PLAYLIST_URL = '/api/playlists/:id';
@@ -10,3 +12,4 @@ export const USER_SONGS_URL = '/api/songs/user/:userName';
 export const USER_PLAYLISTS_URL = '/api/playlists/user/:userName';
 export const CURRENT_USER_URL = '/api/users/current';
 export const REGISTER_USER_URL = '/api/users/register';
+export const SONG_STREAM_URL = `${getBackEndUrl()}/api/files/:songPath`;

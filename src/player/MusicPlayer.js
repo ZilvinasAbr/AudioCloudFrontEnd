@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Icon,
   Progress,
   Segment
 } from 'semantic-ui-react';
 
-const MusicPlayer = () => (
+const MusicPlayer = ({isPlaying, onTogglePlay}) => (
   <Segment>
     <div>
       <Progress percent={50} size='tiny'/>
@@ -16,8 +17,9 @@ const MusicPlayer = () => (
         size='large'
       />
       <Icon
-        name='play'
+        name={isPlaying ? 'pause' : 'play'}
         size='large'
+        onClick={onTogglePlay}
       />
       <Icon
         name='step forward'
@@ -30,5 +32,10 @@ const MusicPlayer = () => (
     </Segment>
   </Segment>
 );
+
+MusicPlayer.propTypes = {
+  isPlaying: PropTypes.bool.isRequired,
+  onTogglePlay: PropTypes.func.isRequired
+};
 
 export default MusicPlayer;

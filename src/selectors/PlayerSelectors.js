@@ -5,6 +5,7 @@ import {songSchema} from '../constants/Schemas';
 import {getEntities} from '../selectors/CommonSelectors';
 
 export const getCurrentSongId = state => state.player.currentSong;
+export const getIsPlaying = state => state.player.isPlaying;
 
 export const getCurrentSong = createSelector(
   getEntities,

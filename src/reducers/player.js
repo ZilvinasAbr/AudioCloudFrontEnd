@@ -1,7 +1,11 @@
 import * as types from '../constants/ActionTypes';
 
 const initialState = {
-  currentSong: null
+  currentSong: null,
+  isPlaying: false,
+  currentTime: 0,
+  duration: 0,
+  volume: 1
 };
 
 export default function player(state = initialState, action) {
@@ -10,6 +14,16 @@ export default function player(state = initialState, action) {
       return {
         ...state,
         currentSong: action.id
+      };
+    case types.ON_PLAY:
+      return {
+        ...state,
+        isPlaying: true
+      };
+    case types.ON_PAUSE:
+      return {
+        ...state,
+        isPlaying: false
       };
     case types.LOGOUT_SUCCESS:
       return initialState;

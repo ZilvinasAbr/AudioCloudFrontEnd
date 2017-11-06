@@ -7,9 +7,8 @@ import {
 
 import SongInfo from './SongInfo';
 import MusicPlayer from './MusicPlayer';
-import mockSongs from '../mockData/mockSongs';
 
-const Player = ({currentSong}) =>
+const Player = ({isPlaying, currentSong, onTogglePlay}) =>
   currentSong && (
     <Menu fixed='bottom'>
       <Grid celled='internally'>
@@ -22,7 +21,10 @@ const Player = ({currentSong}) =>
             />
           </Grid.Column>
           <Grid.Column width={6}>
-            <MusicPlayer/>
+            <MusicPlayer
+              isPlaying={isPlaying}
+              onTogglePlay={onTogglePlay}
+            />
           </Grid.Column>
           <Grid.Column width={6}>
           </Grid.Column>
@@ -32,7 +34,9 @@ const Player = ({currentSong}) =>
   );
 
 Player.propTypes = {
-  currentSong: PropTypes.shape({})
+  currentSong: PropTypes.shape({}),
+  isPlaying: PropTypes.bool.isRequired,
+  onTogglePlay: PropTypes.func.isRequired
 };
 
 export default Player;

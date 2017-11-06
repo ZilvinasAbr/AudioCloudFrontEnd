@@ -25,7 +25,7 @@ class Playlist extends Component {
   }
 
   render() {
-    const {playlist, currentSong} = this.props;
+    const {playlist, currentSong, playSong} = this.props;
 
     if (!playlist) {
       return <Loader active/>;
@@ -47,6 +47,8 @@ class Playlist extends Component {
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
             <MainSong
+              playSong={playSong}
+              id={currentSong.id}
               title={currentSong.title}
               pictureUrl={currentSong.pictureUrl}
               likes={currentSong.likes}
@@ -77,7 +79,8 @@ Playlist.propTypes = {
     name: PropTypes.string.isRequired,
     songs: PropTypes.arrayOf(PropTypes.shape({}))
   }),
-  currentSong: PropTypes.shape({})
+  currentSong: PropTypes.shape({}),
+  playSong: PropTypes.func.isRequired
 };
 
 export default Playlist;

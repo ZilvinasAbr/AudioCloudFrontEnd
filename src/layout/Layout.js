@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../header/Header';
-import Footer from '../footer/Footer';
+import PlayerContainer from '../player/PlayerContainer';
 
 const Layout = ({children, currentUser, goToSearchSongs, logout}) => (
   <div>
@@ -12,7 +12,7 @@ const Layout = ({children, currentUser, goToSearchSongs, logout}) => (
       logout={logout}
     />
     {children}
-    <Footer/>
+    <PlayerContainer/>
   </div>
 );
 

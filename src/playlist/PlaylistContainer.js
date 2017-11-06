@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import Playlist from './Playlist';
 
 import {fetchPlaylistIfNeeded} from '../actions/PlaylistActions';
+import {playSong} from "../actions/PlayerActions";
 import {getPlaylistId} from '../selectors/RouterSelectors';
 import {getPlaylist, getCurrentSong} from '../selectors/PlaylistSelectors';
 
@@ -16,5 +17,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  fetchPlaylistIfNeeded
+  fetchPlaylistIfNeeded,
+  playSong
 })(PlaylistContainer);

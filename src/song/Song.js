@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
+  Button,
   Grid,
   Loader
 } from 'semantic-ui-react';
@@ -27,7 +28,7 @@ class Song extends Component {
   }
 
   render() {
-    const {song, popularSongs} = this.props;
+    const {playSong, song, popularSongs} = this.props;
 
     if (!song) {
       return <Loader active/>;
@@ -47,6 +48,8 @@ class Song extends Component {
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
             <MainSong
+              id={song.id}
+              playSong={playSong}
               title={song.title}
               pictureUrl={song.pictureUrl}
               likes={song.likes}
@@ -75,7 +78,8 @@ Song.propTypes = {
   fetchSongIfNeeded: PropTypes.func.isRequired,
   song: PropTypes.shape({}),
   popularSongs: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  fetchPopularSongs: PropTypes.func.isRequired
+  fetchPopularSongs: PropTypes.func.isRequired,
+  playSong: PropTypes.func.isRequired
 };
 
 export default Song;

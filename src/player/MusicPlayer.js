@@ -6,7 +6,9 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-const MusicPlayer = ({isPlaying, onTogglePlay}) => (
+import audio from './audio';
+
+const MusicPlayer = ({isPlaying, togglePlay}) => (
   <Segment>
     <div>
       <Progress percent={50} size='tiny'/>
@@ -19,7 +21,7 @@ const MusicPlayer = ({isPlaying, onTogglePlay}) => (
       <Icon
         name={isPlaying ? 'pause' : 'play'}
         size='large'
-        onClick={onTogglePlay}
+        onClick={togglePlay}
       />
       <Icon
         name='step forward'
@@ -35,7 +37,7 @@ const MusicPlayer = ({isPlaying, onTogglePlay}) => (
 
 MusicPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
-  onTogglePlay: PropTypes.func.isRequired
+  togglePlay: PropTypes.func.isRequired
 };
 
-export default MusicPlayer;
+export default audio(MusicPlayer);

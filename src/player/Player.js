@@ -8,7 +8,7 @@ import {
 import SongInfo from './SongInfo';
 import MusicPlayer from './MusicPlayer';
 
-const Player = ({isPlaying, currentSong, onTogglePlay}) =>
+const Player = ({isPlaying, currentSong, onPause, onPlay}) =>
   currentSong && (
     <Menu fixed='bottom'>
       <Grid celled='internally'>
@@ -22,8 +22,10 @@ const Player = ({isPlaying, currentSong, onTogglePlay}) =>
           </Grid.Column>
           <Grid.Column width={6}>
             <MusicPlayer
+              audioUrl={currentSong.filePath}
               isPlaying={isPlaying}
-              onTogglePlay={onTogglePlay}
+              onPause={onPause}
+              onPlay={onPlay}
             />
           </Grid.Column>
           <Grid.Column width={6}>
@@ -36,7 +38,8 @@ const Player = ({isPlaying, currentSong, onTogglePlay}) =>
 Player.propTypes = {
   currentSong: PropTypes.shape({}),
   isPlaying: PropTypes.bool.isRequired,
-  onTogglePlay: PropTypes.func.isRequired
+  onPause: PropTypes.func.isRequired,
+  onPlay: PropTypes.func.isRequired
 };
 
 export default Player;

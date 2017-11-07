@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import Player from './Player';
-import {onTogglePlay} from '../actions/PlayerActions';
+import {onPause, onPlay} from '../actions/PlayerActions';
 import {getCurrentSong, getIsPlaying} from "../selectors/PlayerSelectors";
 
 const PlayerContainer = props => <Player {...props} />;
@@ -13,5 +13,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  onTogglePlay
+  onPause,
+  onPlay
 })(PlayerContainer);

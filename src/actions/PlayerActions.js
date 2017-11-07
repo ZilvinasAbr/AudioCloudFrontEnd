@@ -1,5 +1,4 @@
 import * as types from '../constants/ActionTypes';
-import {getIsPlaying} from '../selectors/PlayerSelectors';
 
 export const playSongSuccess = id => ({
   type: types.PLAY_SONG_SUCCESS,
@@ -13,17 +12,6 @@ export const onPlay = () => ({
 export const onPause = () => ({
   type: types.ON_PAUSE
 });
-
-export const onTogglePlay = () => (dispatch, getState) => {
-  const state = getState();
-  const isPlaying = getIsPlaying(state);
-
-  if (isPlaying) {
-    dispatch(onPause());
-  } else {
-    dispatch(onPlay());
-  }
-};
 
 export const playSong = id => async dispatch => {
   dispatch(playSongSuccess(id));

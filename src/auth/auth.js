@@ -70,7 +70,7 @@ class Auth {
         usePostMessage: true
       }, (err, result) => {
         if (err) {
-          console.log(err);
+          console.error(err);
         } else {
           this.setSession(result);
         }

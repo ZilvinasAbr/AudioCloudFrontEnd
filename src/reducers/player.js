@@ -10,6 +10,11 @@ const initialState = {
 
 export default function player(state = initialState, action) {
   switch (action.type) {
+    case types.ON_LOADED_METADATA:
+      return {
+        ...state,
+        duration: action.duration,
+      };
     case types.PLAY_SONG_SUCCESS:
       return {
         ...state,
@@ -24,6 +29,11 @@ export default function player(state = initialState, action) {
       return {
         ...state,
         isPlaying: false
+      };
+    case types.ON_TIME_UPDATE:
+      return {
+        ...state,
+        currentTime: action.currentTime
       };
     case types.LOGOUT_SUCCESS:
       return initialState;

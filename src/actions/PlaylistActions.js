@@ -1,7 +1,12 @@
 import {normalize} from 'normalizr';
 
 import * as types from '../constants/ActionTypes';
-import {PLAYLIST_URL, ADD_PLAYLIST_URL} from '../constants/ApiConstants';
+import {
+  PLAYLIST_URL,
+  ADD_PLAYLIST_URL,
+  ADD_SONG_TO_PLAYLIST_URL,
+  REMOVE_SONG_FROM_PLAYLIST_URL
+} from '../constants/ApiConstants';
 import * as api from '../apiService';
 import {playlistSchema} from '../constants/Schemas';
 
@@ -67,5 +72,32 @@ export const addPlaylist = data => async () => {
   } catch (err) {
     console.error('Could not add playlist', err);
     return false;
+  }
+};
+
+export const addSongToPlaylist = (playlistId, songId) => async dispatch => {
+  try {
+    const url = ADD_SONG_TO_PLAYLIST_URL
+      .replace(':playlistId', playlistId)
+      .replace(':songId', songId);
+
+    const response = await api.post(url, {authorized: true});
+
+    console.log('song added');
+  } catch (err) {
+    console.error('Could not add song to playlist', err);
+  }
+};
+
+export const removeSongFromPlaylist = (playlistId, songId) => async dispatch => {
+  try {
+    const url = ADD_SONG_TO_PLAYLIST_URL
+      .replace(':playlistId', playlistId)
+      .replace(':songId', songId);
+
+    const response = await api.del(url, {authorized: true});
+    console.log('song removed');
+  } catch (err) {
+    console.error('Could not remove song from a playlist', err);
   }
 };

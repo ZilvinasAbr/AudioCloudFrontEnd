@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Checkbox, Button, Grid, Header, List, Popup} from 'semantic-ui-react';
+import {Checkbox, Button, Header, List, Popup} from 'semantic-ui-react';
 
+import {
+  addSongToPlaylist,
+  removeSongFromPlaylist
+} from '../actions/PlaylistActions';
 import {fetchUserPlaylists} from '../actions/LibraryActions';
 import {getUserPlaylists} from '../selectors/LibrarySelectors';
 import {getCurrentUser} from '../selectors/UserSelectors';
@@ -19,17 +23,21 @@ class AddToPlaylistPopup extends Component {
     fetchUserPlaylists(name);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {playlists, songId} = this.props;
-    if (!playlists && nextProps.playlists) {
-      // this.setState({
-      //   checkboxes: nextProps.playlists.filter(playlist => playlist.songs.find(s => s.id === songId))
-      // });
-    }
-  }
+  getIsChecked = playlist => !!playlist.songs.find(s => s.id === this.props.songId);
 
   handleOpen = () => this.setState({isOpen: true});
   handleClose = () => this.setState({isOpen: false});
+  handleChange = (e, {checked}, i) => {
+    const {
+      playlists, addSongToPlaylist, removeSongFromPlaylist, songId
+    } = this.props;
+
+    if (checked) {
+      addSongToPlaylist(playlists[i].id, songId);
+    } else {
+      removeSongFromPlaylist(playlists[i].id, songId);
+    }
+  };
 
   render() {
     const {playlists} = this.props;
@@ -48,7 +56,11 @@ class AddToPlaylistPopup extends Component {
         <List>
           {playlists && playlists.map((playlist, i) => (
             <List.Item key={i}>
-              <Checkbox checked={true} label={playlist.name}/>
+              <Checkbox
+                onChange={(e, data) => this.handleChange(e, data, i)}
+                checked={this.getIsChecked(playlist)}
+                label={playlist.name}
+              />
             </List.Item>
           ))}
         </List>
@@ -67,5 +79,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  fetchUserPlaylists
+  fetchUserPlaylists,
+  addSongToPlaylist,
+  removeSongFromPlaylist
 })(AddToPlaylistPopup);

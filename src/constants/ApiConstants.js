@@ -3,6 +3,8 @@ import {getBackEndUrl} from "../environmentConfig";
 export const SONG_URL = '/api/songs/:id';
 export const SEARCH_SONGS_URL = '/api/songs/search/:query';
 export const ADD_PLAYLIST_URL = '/api/playlists';
+export const ADD_SONG_TO_PLAYLIST_URL = '/api/playlists/:playlistId/song/:songId';
+export const REMOVE_SONG_FROM_PLAYLIST_URL = ADD_SONG_TO_PLAYLIST_URL;
 export const PLAYLIST_URL = '/api/playlists/:id';
 export const POPULAR_SONGS_URL = '/api/songs/popular';
 export const GENRE_SONGS_URL = '/api/songs/genre/:genreName';

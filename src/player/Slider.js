@@ -12,19 +12,19 @@ class Slider extends Component {
   }
 
   onClick = e => {
-    const {max, onChange} = this.props;
+    const {onChange} = this.props;
     const percent = (e.clientX - offsetLeft(e.currentTarget)) / e.currentTarget.offsetWidth;
-    const currentTime = Math.floor(percent * max);
+    // const currentTime = Math.floor(percent * max);
     onChange(percent);
   };
 
   onMouseMove = e => {
     const {domNode, props} = this;
-    const {max, onChange} = props;
+    const {onChange} = props;
 
     const diff = e.clientX - offsetLeft(domNode);
     const percent = Math.min(Math.max(diff / domNode.offsetWidth, 0), 1);
-    const currentTime = Math.floor(percent * max);
+    // const currentTime = Math.floor(percent * max);
     onChange(percent);
   };
 

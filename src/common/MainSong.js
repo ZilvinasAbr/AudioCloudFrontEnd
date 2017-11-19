@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
+  Icon,
   Image,
   Segment
 } from 'semantic-ui-react';
+
+import AddPlaylistModal from '../addPlaylist/AddPlaylistModal';
+import AddToPlaylistPopup from '../addPlaylist/AddToPlaylistPopup';
 
 const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
   <div>
@@ -14,6 +18,13 @@ const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
     <Segment.Group>
       <Segment>
         <h2>{title}</h2>
+        <Button icon onClick={() => {}}>
+          <Icon name='heart' />
+        </Button>
+        <AddPlaylistModal/>
+        <AddToPlaylistPopup
+          songId={id}
+        />
         <Button onClick={() => playSong(id)}>Play</Button>
       </Segment>
       <Segment.Group horizontal>

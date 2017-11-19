@@ -31,7 +31,11 @@ class Playlists extends Component {
           {
             playlists.map((playlist, i) => (
               <Segment key={i}>
-                <Image size='tiny' src={playlist.songs[0].pictureUrl}/>
+                {playlist.songs.length ?
+                  <Image size='tiny' src={playlist.songs[0].pictureUrl}/>
+                  :
+                  <Image size='tiny' src='http://via.placeholder.com/1024x1024'/>
+                }
                 <Header as='h5'>
                   <Link to={paths.PLAYLIST_PATH.replace(':playlistId', playlist.id)}>{playlist.name}</Link>
                 </Header>

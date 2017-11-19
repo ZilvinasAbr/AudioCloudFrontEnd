@@ -5,14 +5,14 @@ export function get(url, {headers, authorized} = {}) {
 
   const params = {
     method: 'GET',
-    headers: headers || new Headers(),
+    headers: headers || {},
     mode: 'cors',
     cache: 'default'
   };
 
   if (authorized) {
     const accessToken = localStorage.getItem('access_token');
-    params.headers.set('Authorization', `Bearer ${accessToken}`);
+    params.headers['Authorization'] = `Bearer ${accessToken}`;
   }
 
   return fetch(`${baseUrl}${url}`, params);
@@ -20,21 +20,24 @@ export function get(url, {headers, authorized} = {}) {
 
 export function post(url, {body, authorized}) {
   const baseUrl = getBackEndUrl();
-  
-    const params = {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers: new Headers(),
-      mode: 'cors',
-      cache: 'default'
-    };
 
-    if (authorized) {
-      const accessToken = localStorage.getItem('access_token');
-      params.headers.set('Authorization', `Bearer ${accessToken}`);
-    }
-  
-    return fetch(`${baseUrl}${url}`, params);
+  const params = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    mode: 'cors',
+    cache: 'default'
+  };
+
+  if (authorized) {
+    const accessToken = localStorage.getItem('access_token');
+    params.headers['Authorization'] = `Bearer ${accessToken}`;
+  }
+
+  return fetch(`${baseUrl}${url}`, params);
 }
 
 export default {

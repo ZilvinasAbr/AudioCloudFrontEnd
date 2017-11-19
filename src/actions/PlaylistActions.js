@@ -1,7 +1,7 @@
 import {normalize} from 'normalizr';
 
 import * as types from '../constants/ActionTypes';
-import {PLAYLIST_URL} from '../constants/ApiConstants';
+import {PLAYLIST_URL, ADD_PLAYLIST_URL} from '../constants/ApiConstants';
 import * as api from '../apiService';
 import {playlistSchema} from '../constants/Schemas';
 
@@ -43,5 +43,29 @@ const shouldFetchPlaylist = (id, state) => {
 export const fetchPlaylistIfNeeded = id => (dispatch, getState) => {
   if (shouldFetchPlaylist(id, getState())) {
     dispatch(fetchPlaylist(id));
+  }
+};
+
+export const addPlaylist = data => async () => {
+  const {name, is, description} = data;
+  const body = {
+    name,
+    isPublic: is === 'public',
+    description
+  };
+
+  try {
+    const response = await api.post(ADD_PLAYLIST_URL, {body, authorized: true});
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json);
+    }
+
+    return true;
+
+  } catch (err) {
+    console.error('Could not add playlist', err);
+    return false;
   }
 };

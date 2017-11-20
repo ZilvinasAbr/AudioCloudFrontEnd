@@ -10,6 +10,18 @@ import {
 import * as api from '../apiService';
 import {playlistSchema} from '../constants/Schemas';
 
+export const addSongToPlaylistSuccess = (playlistId, songId) => ({
+  type: types.ADD_SONG_TO_PLAYLIST,
+  playlistId,
+  songId
+});
+
+export const removeSongFromPlaylistSuccess = (playlistId, songId) => ({
+  type: types.REMOVE_SONG_FROM_PLAYLIST,
+  playlistId,
+  songId
+});
+
 export const fetchPlaylistsSuccess = entities => ({
   type: types.FETCH_PLAYLISTS_SUCCESS,
   entities
@@ -82,8 +94,13 @@ export const addSongToPlaylist = (playlistId, songId) => async dispatch => {
       .replace(':songId', songId);
 
     const response = await api.post(url, {authorized: true});
+    const json = await response.json();
 
-    console.log('song added');
+    if (!response.ok) {
+      throw new Error(json);
+    }
+
+    dispatch(addSongToPlaylistSuccess(playlistId, songId));
   } catch (err) {
     console.error('Could not add song to playlist', err);
   }
@@ -91,12 +108,18 @@ export const addSongToPlaylist = (playlistId, songId) => async dispatch => {
 
 export const removeSongFromPlaylist = (playlistId, songId) => async dispatch => {
   try {
-    const url = ADD_SONG_TO_PLAYLIST_URL
+    const url = REMOVE_SONG_FROM_PLAYLIST_URL
       .replace(':playlistId', playlistId)
       .replace(':songId', songId);
 
     const response = await api.del(url, {authorized: true});
-    console.log('song removed');
+
+    if (!response.ok) {
+      const json = await response.json();
+      throw new Error(json);
+    }
+
+    dispatch(removeSongFromPlaylistSuccess(playlistId, songId));
   } catch (err) {
     console.error('Could not remove song from a playlist', err);
   }

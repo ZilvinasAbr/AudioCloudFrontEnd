@@ -52,7 +52,6 @@ class AddToPlaylistPopup extends Component {
         position='top right'
       >
         <Header as='h2'>Add to playlist</Header>
-        <Button>Create new</Button>
         <List>
           {playlists && playlists.map((playlist, i) => (
             <List.Item key={i}>

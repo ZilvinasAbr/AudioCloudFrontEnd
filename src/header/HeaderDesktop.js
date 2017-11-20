@@ -30,6 +30,8 @@ const HeaderDesktop = ({user, onSearch, logout}) => (
         <Menu.Item>
           <Dropdown button text={user ? user.name : ''}>
             <Dropdown.Menu>
+              <Dropdown.Item>Upload Song</Dropdown.Item>
+              <Dropdown.Item>Create new playlist</Dropdown.Item>
               <Dropdown.Item onClick={logout}>Log Out</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

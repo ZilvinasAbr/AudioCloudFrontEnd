@@ -29,6 +29,8 @@ const HeaderMobile = ({user, onSearch, logout}) => (
               <Dropdown.Item>
                 <Link to={paths.LIBRARY_PATH}>Library</Link>
               </Dropdown.Item>
+              <Dropdown.Item>Upload Song</Dropdown.Item>
+              <Dropdown.Item>Create new playlist</Dropdown.Item>
               <Dropdown.Item onClick={logout}>Log Out</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

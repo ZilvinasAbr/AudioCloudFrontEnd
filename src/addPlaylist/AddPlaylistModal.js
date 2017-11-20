@@ -36,7 +36,6 @@ class AddPlaylistModal extends Component {
 
   render() {
     const {open, dimmer, data} = this.state;
-    const {onOpen, onClose} = this.props;
 
     return (
       <div>

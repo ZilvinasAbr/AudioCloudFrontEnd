@@ -1,5 +1,6 @@
 import {getBackEndUrl} from "../environmentConfig";
 
+export const UPLOAD_SONG_URL = '/api/songs';
 export const SONG_URL = '/api/songs/:id';
 export const SEARCH_SONGS_URL = '/api/songs/search/:query';
 export const ADD_PLAYLIST_URL = '/api/playlists';

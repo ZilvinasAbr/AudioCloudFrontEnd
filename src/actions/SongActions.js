@@ -1,7 +1,11 @@
 import {normalize} from 'normalizr';
 
 import * as types from '../constants/ActionTypes';
-import {SONG_URL, POPULAR_SONGS_URL} from '../constants/ApiConstants';
+import {
+  SONG_URL,
+  POPULAR_SONGS_URL,
+  UPLOAD_SONG_URL
+} from '../constants/ApiConstants';
 import * as api from '../apiService';
 import {songSchema} from '../constants/Schemas';
 
@@ -61,5 +65,22 @@ export const fetchPopularSongs = () => async dispatch => {
     dispatch(fetchPopularSongsSuccess(result));
   } catch (err) {
     console.error('Could not fetch popular songs', err);
+  }
+};
+
+export const uploadSong = data => async dispatch => {
+  const body = data;
+  try {
+    const response = await api.post(UPLOAD_SONG_URL, {body, authorized: true});
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json);
+    }
+
+    console.log('Successfully uploaded a song');
+
+  } catch (err) {
+    console.error('Could not upload a song', err);
   }
 };

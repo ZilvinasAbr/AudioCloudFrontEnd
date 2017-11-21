@@ -42,7 +42,7 @@ class UploadSongModal extends Component {
 
     return (
       <div>
-        <Button onClick={this.show(false)}>Upload Song</Button>
+        <div onClick={this.show(false)}>Upload Song</div>
         <Modal size='tiny' dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Upload Song</Modal.Header>
           <Modal.Content>

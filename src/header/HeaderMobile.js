@@ -7,6 +7,8 @@ import {
 } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
+import CreatePlaylistModal from '../createPlaylist/CreatePlaylistModal';
+import UploadSongModal from '../uploadSong/UploadSongModal';
 import SearchInput from './SearchInput';
 import * as paths from '../constants/RouterConstants';
 
@@ -29,8 +31,8 @@ const HeaderMobile = ({user, onSearch, logout}) => (
               <Dropdown.Item>
                 <Link to={paths.LIBRARY_PATH}>Library</Link>
               </Dropdown.Item>
-              <Dropdown.Item>Upload Song</Dropdown.Item>
-              <Dropdown.Item>Create new playlist</Dropdown.Item>
+              <Dropdown.Item><UploadSongModal/></Dropdown.Item>
+              <Dropdown.Item><CreatePlaylistModal/></Dropdown.Item>
               <Dropdown.Item onClick={logout}>Log Out</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

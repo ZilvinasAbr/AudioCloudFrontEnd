@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Input, Form, Radio, TextArea} from 'semantic-ui-react';
+import {Input, Form, TextArea} from 'semantic-ui-react';
 
 const UploadSongForm =
   ({

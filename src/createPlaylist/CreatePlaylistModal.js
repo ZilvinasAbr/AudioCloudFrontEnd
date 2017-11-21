@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button, Modal} from 'semantic-ui-react';
 
 import {addPlaylist} from '../actions/PlaylistActions';
-import AddPlaylistForm from './AddPlaylistForm';
+import AddPlaylistForm from './CreatePlaylistForm';
 
 class AddPlaylistModal extends Component {
   initialData = {
@@ -39,7 +39,7 @@ class AddPlaylistModal extends Component {
 
     return (
       <div>
-        <Button onClick={this.show(false)}>Create new playlist</Button>
+        <div onClick={this.show(false)}>Create new playlist</div>
         <Modal size='tiny' dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Add to playlist</Modal.Header>
           <Modal.Content>

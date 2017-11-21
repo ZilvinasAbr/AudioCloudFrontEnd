@@ -7,9 +7,7 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-import AddPlaylistModal from '../addPlaylist/AddPlaylistModal';
-import AddToPlaylistPopup from '../addPlaylist/AddToPlaylistPopup';
-import UploadSongModal from "../uploadSong/UploadSongModal";
+import AddToPlaylistPopup from '../createPlaylist/AddToPlaylistPopup';
 
 const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
   <div>
@@ -22,8 +20,6 @@ const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
         <Button icon onClick={() => {}}>
           <Icon name='heart' />
         </Button>
-        <UploadSongModal/>
-        <AddPlaylistModal/>
         <AddToPlaylistPopup
           songId={id}
         />

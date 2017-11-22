@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Button, Modal} from 'semantic-ui-react';
 
+import * as api from '../apiService';
+import {UPLOAD_FILE_URL} from '../constants/ApiConstants';
+
 import {uploadSong} from '../actions/SongActions';
 import UploadSongForm from './UploadSongForm';
 
@@ -10,7 +13,9 @@ class UploadSongModal extends Component {
     description: '',
     pictureUrl: '',
     filePath: '',
-    genre: ''
+    genre: '',
+    imageFile: null,
+    songFile: null
   };
   state = {
     open: false,
@@ -37,18 +42,33 @@ class UploadSongModal extends Component {
     this.setState({data});
   };
 
+  handleImageChange = e => {
+    debugger;
+    const files = e.target.files;
+    const body = {
+      toUpload: files[0]
+    };
+    this.setState({imageFile: body});
+
+    const data = new FormData();
+    data.append('toUpload', files[0]);
+
+    api.postFile(UPLOAD_FILE_URL, {body: data, authorized: true});
+  };
+
   render() {
     const {open, dimmer, data} = this.state;
 
     return (
       <div>
         <div onClick={this.show(false)}>Upload Song</div>
-        <Modal size='tiny' dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Upload Song</Modal.Header>
           <Modal.Content>
             <Modal.Description>
               <UploadSongForm
                 handleChange={this.handleChange}
+                handleImageChange={this.handleImageChange}
                 data={data}
               />
             </Modal.Description>

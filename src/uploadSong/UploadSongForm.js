@@ -5,6 +5,7 @@ import {Input, Form, TextArea} from 'semantic-ui-react';
 const UploadSongForm =
   ({
      handleChange,
+     handleImageChange,
      data
    }) => (
     <Form>
@@ -13,6 +14,7 @@ const UploadSongForm =
         <Form.Field name='description' value={data.description} control={TextArea} onChange={handleChange} label='Description'/>
         <Form.Field name='genre' value={data.genre} control={Input} onChange={handleChange} label='Genre' placeholder='Genre'/>
         <Form.Field name='pictureUrl' value={data.pictureUrl} control={Input} onChange={handleChange} label='Picture URL' placeholder='Picture URL'/>
+        <input name='pictureUrl' type='file' onChange={handleImageChange}/>
       </Form.Group>
     </Form>
   );

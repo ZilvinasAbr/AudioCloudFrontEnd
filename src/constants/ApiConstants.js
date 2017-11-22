@@ -17,3 +17,4 @@ export const USER_PLAYLISTS_URL = '/api/playlists/user/:userName';
 export const CURRENT_USER_URL = '/api/users/current';
 export const REGISTER_USER_URL = '/api/users/register';
 export const SONG_STREAM_URL = `${getBackEndUrl()}/api/files/:songPath`;
+export const UPLOAD_FILE_URL = '/api/files';

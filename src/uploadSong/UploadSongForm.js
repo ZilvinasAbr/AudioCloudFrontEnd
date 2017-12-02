@@ -2,10 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Grid, Input, Form, TextArea} from 'semantic-ui-react';
 
+const getOptions = genres => genres.map(genre => ({
+  key: genre,
+  text: genre,
+  value: genre
+}));
+
 const UploadSongForm =
   ({
      handleChange,
-     handleImageChange,
+     handleSongChange,
+     handleGenreChange,
      data
    }) => (
     <Form>
@@ -18,11 +25,19 @@ const UploadSongForm =
                         label='Description'/>
           </Grid.Column>
           <Grid.Column>
-            <Form.Field name='genre' value={data.genre} control={Input} onChange={handleChange} label='Genre'
-                        placeholder='Genre'/>
+            <Form.Select
+              label='Genre'
+              options={getOptions(data.genres)}
+              placeholder='Select genre'
+              onChange={handleGenreChange}
+              value={data.genre}
+            />
             <Form.Field name='pictureUrl' value={data.pictureUrl} control={Input} onChange={handleChange}
                         label='Picture URL' placeholder='Picture URL'/>
-            <input name='pictureUrl' type='file' onChange={handleImageChange}/>
+            <Form.Field>
+              <label>Song file</label>
+              <input name='songUrl' type='file' onChange={handleSongChange}/>
+            </Form.Field>
           </Grid.Column>
         </Grid.Row>
       </Grid>

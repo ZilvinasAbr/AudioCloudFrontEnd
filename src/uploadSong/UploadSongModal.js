@@ -2,18 +2,25 @@ import React, {Component} from 'react';
 import {Button, Modal} from 'semantic-ui-react';
 
 import * as api from '../apiService';
-import {UPLOAD_FILE_URL} from '../constants/ApiConstants';
+import {UPLOAD_FILE_URL, GENRES_URL} from '../constants/ApiConstants';
 
 import {uploadSong} from '../actions/SongActions';
 import UploadSongForm from './UploadSongForm';
 
 class UploadSongModal extends Component {
+  async componentDidMount() {
+    const response = await api.get(GENRES_URL);
+    const genres = await response.json();
+    this.setState({data: {genres}});
+  }
+
   initialData = {
     title: '',
     description: '',
     pictureUrl: '',
     filePath: '',
     genre: '',
+    genres: [],
     imageFile: null,
     songFile: null
   };
@@ -27,10 +34,21 @@ class UploadSongModal extends Component {
     const {initialData} = this;
     const {data} = this.state;
 
-    const result = await uploadSong(data)();
+    try {
+      const response = await api.postFile(UPLOAD_FILE_URL, {file: data.songFile, authorized: true});
+      const songUrl = await response.text();
 
-    if (result) {
-      console.log('Song uploaded successfully');
+      const newSong = {
+        title: data.title,
+        description: data.description,
+        pictureUrl: 'http://via.placeholder.com/1024x1024',
+        filePath: songUrl,
+        genre: data.genre
+      };
+
+      const result = await uploadSong(newSong)();
+    } catch (err) {
+      console.error(err);
     }
 
     this.setState({open: false, data: {...initialData}});
@@ -42,12 +60,18 @@ class UploadSongModal extends Component {
     this.setState({data});
   };
 
-  handleImageChange = e => {
+  handleGenreChange = (e, {value}) => {
+    const data = this.state.data;
+    data.genre = value;
+    this.setState({data});
+  };
+
+  handleSongChange = e => {
     const files = e.target.files;
 
-    this.setState({imageFile: files[0]});
-
-    api.postFile(UPLOAD_FILE_URL, {file: files[0], authorized: true});
+    const data = this.state.data;
+    data.songFile = files[0];
+    this.setState({data});
   };
 
   render() {
@@ -62,7 +86,8 @@ class UploadSongModal extends Component {
             <Modal.Description>
               <UploadSongForm
                 handleChange={this.handleChange}
-                handleImageChange={this.handleImageChange}
+                handleSongChange={this.handleSongChange}
+                handleGenreChange={this.handleGenreChange}
                 data={data}
               />
             </Modal.Description>

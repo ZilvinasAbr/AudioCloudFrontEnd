@@ -43,17 +43,11 @@ class UploadSongModal extends Component {
   };
 
   handleImageChange = e => {
-    debugger;
     const files = e.target.files;
-    const body = {
-      toUpload: files[0]
-    };
-    this.setState({imageFile: body});
 
-    const data = new FormData();
-    data.append('toUpload', files[0]);
+    this.setState({imageFile: files[0]});
 
-    api.postFile(UPLOAD_FILE_URL, {body: data, authorized: true});
+    api.postFile(UPLOAD_FILE_URL, {file: files[0], authorized: true});
   };
 
   render() {

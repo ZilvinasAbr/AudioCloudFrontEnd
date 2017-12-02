@@ -32,33 +32,27 @@ export function post(url, {body, authorized}) {
     cache: 'default'
   };
 
-  if (authorized) {
-    const accessToken = localStorage.getItem('access_token');
-    params.headers['Authorization'] = `Bearer ${accessToken}`;
-  }
+  setAccessToken(params, authorized);
 
   return fetch(`${baseUrl}${url}`, params);
 }
 
-export function postFile(url, {body, authorized}) {
+export function postFile(url, {file, authorized}) {
   const baseUrl = getBackEndUrl();
+
+  let formData = new FormData();
+
+  formData.append('toUpload', file);
 
   const params = {
     method: 'POST',
-    body,
-    headers: {
-      // 'Accept': 'application/json',
-      'Access-Control-Allow-Origin': getBackEndUrl(),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
+    headers: {},
+    body: formData,
     mode: 'cors',
     cache: 'default'
   };
 
-  if (authorized) {
-    const accessToken = localStorage.getItem('access_token');
-    params.headers['Authorization'] = `Bearer ${accessToken}`;
-  }
+  setAccessToken(params, authorized);
 
   return fetch(`${baseUrl}${url}`, params);
 }
@@ -77,12 +71,16 @@ export function del(url, {body, authorized}) {
     cache: 'default'
   };
 
+  setAccessToken(params, authorized);
+
+  return fetch(`${baseUrl}${url}`, params);
+}
+
+function setAccessToken(params, authorized) {
   if (authorized) {
     const accessToken = localStorage.getItem('access_token');
     params.headers['Authorization'] = `Bearer ${accessToken}`;
   }
-
-  return fetch(`${baseUrl}${url}`, params);
 }
 
 export default {

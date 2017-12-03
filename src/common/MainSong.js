@@ -12,7 +12,7 @@ import AddToPlaylistPopup from '../createPlaylist/AddToPlaylistPopup';
 const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
   <div>
     <Segment>
-      <Image src={pictureUrl} size='large' centered/>
+      <Image src={pictureUrl || 'http://via.placeholder.com/1024x1024'} size='large' centered/>
     </Segment>
     <Segment.Group>
       <Segment>

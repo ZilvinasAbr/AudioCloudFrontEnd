@@ -20,7 +20,7 @@ const SongList = ({title, songs, songUrls}) => (
       <Item.Group divided>
         {songs.map((song, i) => (
           <Item key={i}>
-            <Item.Image size='tiny' src={song.pictureUrl}/>
+            <Item.Image size='tiny' src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
             <Item.Content>
               <Item.Header><Link to={songUrls[i]}>{song.title}</Link></Item.Header>
               <Item.Description>

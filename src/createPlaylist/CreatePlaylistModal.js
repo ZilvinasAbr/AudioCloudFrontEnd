@@ -20,11 +20,8 @@ class AddPlaylistModal extends Component {
   submit = async () => {
     const {initialData} = this;
     const {data} = this.state;
-    console.log(data);
-    const result = await addPlaylist(data)();
-    if (result) {
-      console.log('Playlist added successfully');
-    }
+
+    await addPlaylist(data)();
 
     this.setState({open: false, data: {...initialData}});
   };

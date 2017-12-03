@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Checkbox, Button, Header, List, Popup} from 'semantic-ui-react';
+import {Checkbox, Header, List, Popup} from 'semantic-ui-react';
 
+import MainButton from '../common/MainButton';
 import {
   addSongToPlaylist,
   removeSongFromPlaylist
@@ -10,11 +11,6 @@ import {
 import {fetchUserPlaylists} from '../actions/LibraryActions';
 import {getUserPlaylists} from '../selectors/LibrarySelectors';
 import {getCurrentUser} from '../selectors/UserSelectors';
-import * as styles from '../styles';
-
-const secondaryButton = {
-  backgroundColor: styles.menuButtonColor
-};
 
 class AddToPlaylistPopup extends Component {
   state = {
@@ -49,7 +45,7 @@ class AddToPlaylistPopup extends Component {
 
     return (
       <Popup
-        trigger={<Button style={secondaryButton}  icon='add'/>}
+        trigger={<MainButton icon='add'/>}
         on='click'
         open={this.state.isOpen}
         onClose={this.handleClose}

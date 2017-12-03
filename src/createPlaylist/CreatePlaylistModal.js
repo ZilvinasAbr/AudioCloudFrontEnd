@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Button, Modal} from 'semantic-ui-react';
+import {Button, Modal, Transition} from 'semantic-ui-react';
 
+import MainButton from '../common/MainButton';
 import {addPlaylist} from '../actions/PlaylistActions';
 import AddPlaylistForm from './CreatePlaylistForm';
 
@@ -40,27 +41,29 @@ class AddPlaylistModal extends Component {
     return (
       <div>
         <div onClick={this.show(false)}>Create new playlist</div>
-        <Modal size='tiny' dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>Add to playlist</Modal.Header>
-          <Modal.Content>
-            <Modal.Description>
-              <AddPlaylistForm
-                handleNameChange={this.handleNameChange}
-                handleDescriptionChange={this.handleDescriptionChange}
-                handleChange={this.handleChange}
-                data={data}
-              />
-            </Modal.Description>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button positive onClick={this.submit}>
-              Submit
-            </Button>
-            <Button color='black' onClick={this.close}>
-              Cancel
-            </Button>
-          </Modal.Actions>
-        </Modal>
+        <Transition animation='pulse' duration={500}>
+          <Modal size='tiny' dimmer={dimmer} open={open} onClose={this.close}>
+            <Modal.Header>Add to playlist</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <AddPlaylistForm
+                  handleNameChange={this.handleNameChange}
+                  handleDescriptionChange={this.handleDescriptionChange}
+                  handleChange={this.handleChange}
+                  data={data}
+                />
+              </Modal.Description>
+            </Modal.Content>
+            <Modal.Actions>
+              <MainButton onClick={this.submit}>
+                Submit
+              </MainButton>
+              <Button color='black' onClick={this.close}>
+                Cancel
+              </Button>
+            </Modal.Actions>
+          </Modal>
+        </Transition>
       </div>
     );
   }

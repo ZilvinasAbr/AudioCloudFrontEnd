@@ -24,7 +24,7 @@ const HeaderMobile = ({user, onSearch, logout}) => (
         <Menu.Item>
           <Dropdown icon='bars' button>
             <Dropdown.Menu>
-              <Dropdown.Item>
+              <Dropdown.Item color='orange'>
                 {user ? user.name : ''}
               </Dropdown.Item>
               <Dropdown.Item>

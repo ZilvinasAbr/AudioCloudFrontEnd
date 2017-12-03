@@ -8,8 +8,6 @@ import Private from './Private';
 import Authenticate from './auth/Authenticate';
 import Landing from './landing/Landing';
 
-import './App.css';
-
 const App = () => (
   <div>
     <Route exact path={paths.LANDING_PATH} component={Landing}/>

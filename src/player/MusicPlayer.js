@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Icon,
+  Button,
   Segment
 } from 'semantic-ui-react';
 
+import MainButton from '../common/MainButton';
 import Slider from './Slider';
 import audio from './audio';
-import * as styles from '../styles';
-
-const style = {
-  'backgroundColor': styles.secondaryBackground
-};
 
 const MusicPlayer =
   ({
@@ -22,30 +18,22 @@ const MusicPlayer =
      currentTime,
      duration
    }) => (
-    <Segment style={style}>
+    <Segment>
       <Slider
         value={currentTime}
         max={duration}
         onChange={changeCurrentTime}
       />
-      <Segment textAlign='center' style={style}>
-        <Icon
-          name='step backward'
-          size='large'
-        />
-        <Icon
-          name={isPlaying ? 'pause' : 'play'}
-          size='large'
-          onClick={togglePlay}
-        />
-        <Icon
-          name='step forward'
-          size='large'
-        />
-        <Icon
-          name='volume up'
-          size='large'
-        />
+      <Segment textAlign='center'>
+        <Button.Group>
+          <MainButton icon='step backward'/>
+          <MainButton
+            icon={isPlaying ? 'pause' : 'play'}
+            onClick={togglePlay}
+          />
+          <MainButton icon='step forward'/>
+          <MainButton icon='volume up'/>
+        </Button.Group>
       </Segment>
     </Segment>
   );

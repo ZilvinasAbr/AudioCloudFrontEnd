@@ -1,21 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button,
   Icon,
   Image,
   Segment
 } from 'semantic-ui-react';
 
+import MainButton from '../common/MainButton';
 import * as styles from '../styles';
 import AddToPlaylistPopup from '../createPlaylist/AddToPlaylistPopup';
 
 const style = {
   backgroundColor: styles.secondaryBackground
-};
-
-const secondaryButton = {
-  backgroundColor: styles.menuButtonColor
 };
 
 const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
@@ -26,13 +22,14 @@ const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
     <Segment.Group>
       <Segment style={style}>
         <h2>{title}</h2>
-        <Button style={secondaryButton}  icon onClick={() => {}}>
-          <Icon name='heart' />
-        </Button>
+        <MainButton icon onClick={() => {
+        }}>
+          <Icon name='heart'/>
+        </MainButton>
         <AddToPlaylistPopup
           songId={id}
         />
-        <Button style={secondaryButton} onClick={() => playSong(id)}>Play</Button>
+        <MainButton onClick={() => playSong(id)}>Play</MainButton>
       </Segment>
       <Segment.Group horizontal>
         <Segment>{plays} Plays</Segment>

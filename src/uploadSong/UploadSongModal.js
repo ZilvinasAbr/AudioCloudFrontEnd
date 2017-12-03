@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
-import {Button, Modal} from 'semantic-ui-react';
+import {Button, Modal, Transition} from 'semantic-ui-react';
 
 import * as api from '../apiService';
 import {UPLOAD_FILE_URL, GENRES_URL} from '../constants/ApiConstants';
 import * as styles from '../styles';
+import MainButton from '../common/MainButton';
 
 import {uploadSong} from '../actions/SongActions';
 import UploadSongForm from './UploadSongForm';
-
-const mainButtonStyle = {
-  'backgroundColor': styles.mainColor
-};
 
 const modalStyle = {
   'backgroundColor': `${styles.mainColor}`
@@ -89,27 +86,29 @@ class UploadSongModal extends Component {
     return (
       <div>
         <div onClick={this.show(false)}>Upload Song</div>
-        <Modal dimmer={dimmer} open={open} onClose={this.close} style={modalStyle}>
-          <Modal.Header>Upload Song</Modal.Header>
-          <Modal.Content>
-            <Modal.Description>
-              <UploadSongForm
-                handleChange={this.handleChange}
-                handleSongChange={this.handleSongChange}
-                handleGenreChange={this.handleGenreChange}
-                data={data}
-              />
-            </Modal.Description>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button style={mainButtonStyle} onClick={this.submit}>
-              Submit
-            </Button>
-            <Button color='black' onClick={this.close}>
-              Cancel
-            </Button>
-          </Modal.Actions>
-        </Modal>
+        <Transition animation='pulse' duration={500}>
+          <Modal dimmer={dimmer} open={open} onClose={this.close} style={modalStyle}>
+            <Modal.Header>Upload Song</Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <UploadSongForm
+                  handleChange={this.handleChange}
+                  handleSongChange={this.handleSongChange}
+                  handleGenreChange={this.handleGenreChange}
+                  data={data}
+                />
+              </Modal.Description>
+            </Modal.Content>
+            <Modal.Actions>
+              <MainButton onClick={this.submit}>
+                Submit
+              </MainButton>
+              <Button color='black' onClick={this.close}>
+                Cancel
+              </Button>
+            </Modal.Actions>
+          </Modal>
+        </Transition>
       </div>
     );
   }

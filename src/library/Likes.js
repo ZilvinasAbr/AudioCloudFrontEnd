@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import BlackLink from '../common/BlackLink';
-import {Button, Header, Image, Loader, Segment} from 'semantic-ui-react';
+import {Header, Image, Loader, Segment} from 'semantic-ui-react';
 
+import MainButton from '../common/MainButton';
 import * as paths from '../constants/RouterConstants';
 
 class Likes extends Component {
@@ -44,7 +45,7 @@ class Likes extends Component {
           }
         </Segment.Group>
         <div>
-          {isShowingAll || <Button onClick={this.handleShowAll}>Show All</Button>}
+          {isShowingAll || <MainButton onClick={this.handleShowAll}>Show All</MainButton>}
         </div>
       </Segment>
     )

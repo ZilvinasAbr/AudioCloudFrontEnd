@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Item
+  Image
 } from 'semantic-ui-react';
 
 import * as styles from '../styles';
@@ -10,18 +10,17 @@ const style = {
   'backgroundColor': styles.playerBackground
 };
 
-const SongInfo = ({title, pictureUrl, uploaderName, isLiked}) => (
-  <Item.Group style={style}>
-    <Item>
-      <Item.Image size='tiny' src={pictureUrl}/>
-      <Item.Content>
-        <Item.Header style={{color: styles.whiteTextColor}}>{title}</Item.Header>
-        <Item.Description style={{color: styles.whiteTextColor}}>
-          {uploaderName}
-        </Item.Description>
-      </Item.Content>
-    </Item>
-  </Item.Group>
+const SongInfo = ({title, pictureUrl, uploaderName}) => (
+  <div>
+    {title}
+      {/*<Item.Image size='tiny' src={pictureUrl || 'http://via.placeholder.com/1024x1024'}/>*/}
+      {/*<Item.Content>*/}
+        {/*<Item.Header style={{color: styles.whiteTextColor}}>{title}</Item.Header>*/}
+        {/*<Item.Description style={{color: styles.whiteTextColor}}>*/}
+          {/*{uploaderName}*/}
+        {/*</Item.Description>*/}
+      {/*</Item.Content>*/}
+  </div>
 );
 
 SongInfo.propTypes = {

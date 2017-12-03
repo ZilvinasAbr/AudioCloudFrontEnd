@@ -6,9 +6,24 @@ import offsetLeft from '../utils/DomUtils';
 const getPercentage = (value, max) => max ? Math.floor(value * 100 / max) : 0;
 
 class Slider extends Component {
+  state = {
+    width: window.innerWidth
+  };
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions = () => {
+    console.log(window.innerWidth);
+    this.setState({width: window.innerWidth});
+  };
+
   componentWillUnmount() {
     document.removeEventListener('mousemove', this.onMouseMove);
     document.removeEventListener('mouseup', this.onMouseUp);
+    document.removeEventListener('resize', this.updateWindowDimensions);
   }
 
   onClick = e => {
@@ -39,6 +54,7 @@ class Slider extends Component {
   };
 
   render() {
+    const {width} = this.state;
     const {max, value} = this.props;
 
     return (
@@ -47,6 +63,8 @@ class Slider extends Component {
         onClick={this.onClick}
       >
         <Progress
+          style={{width: `${width - width/2}px`}}
+          color='orange'
           percent={getPercentage(value, max)}
           size='tiny'
           tabIndex="0"

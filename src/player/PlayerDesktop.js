@@ -9,10 +9,6 @@ import * as styles from '../styles';
 import SongInfo from './SongInfo';
 import MusicPlayer from './MusicPlayer';
 
-const playerStyle = {
-  'backgroundColor': styles.playerBackground
-};
-
 const PlayerDesktop =
   ({
      isPlaying,
@@ -25,33 +21,17 @@ const PlayerDesktop =
      onLoadedMetadata
    }) =>
   currentSong && (
-    <Menu fixed='bottom' style={playerStyle}>
-      <Grid celled='internally'>
-        <Grid.Row>
-          <Grid.Column width={4}>
-            <SongInfo
-              title={currentSong.title}
-              uploaderName={currentSong.user.name}
-              pictureUrl={currentSong.pictureUrl}
-            />
-          </Grid.Column>
-          <Grid.Column width={6}>
-            <MusicPlayer
-              audioUrl={currentSong.filePath}
-              isPlaying={isPlaying}
-              onPause={onPause}
-              onPlay={onPlay}
-              onTimeUpdate={onTimeUpdate}
-              onLoadedMetadata={onLoadedMetadata}
-              currentTime={currentTime}
-              duration={duration}
-            />
-          </Grid.Column>
-          <Grid.Column width={6}>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Menu>
+    <MusicPlayer
+      currentSong={currentSong}
+      audioUrl={currentSong.filePath}
+      isPlaying={isPlaying}
+      onPause={onPause}
+      onPlay={onPlay}
+      onTimeUpdate={onTimeUpdate}
+      onLoadedMetadata={onLoadedMetadata}
+      currentTime={currentTime}
+      duration={duration}
+    />
   );
 
 PlayerDesktop.propTypes = {

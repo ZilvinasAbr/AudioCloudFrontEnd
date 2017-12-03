@@ -17,10 +17,6 @@ const menuStyle = {
   'backgroundColor': styles.menuBackgroundColor
 };
 
-const buttonStyle = {
-  'backgroundColor': styles.menuButtonColor
-};
-
 const HeaderMobile = ({user, onSearch, logout}) => (
   <header>
     <Menu borderless fixed='top' style={menuStyle}>

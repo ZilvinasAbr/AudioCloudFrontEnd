@@ -55,7 +55,7 @@ class UploadSongModal extends Component {
         genre: data.genre
       };
 
-      const result = await uploadSong(newSong)();
+      await uploadSong(newSong)();
     } catch (err) {
       console.error(err);
     }

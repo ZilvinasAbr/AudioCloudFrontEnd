@@ -6,7 +6,6 @@ import {
 } from 'semantic-ui-react';
 
 import * as styles from '../styles';
-import SongInfo from './SongInfo';
 import MusicPlayer from './MusicPlayer';
 
 const playerStyle = {

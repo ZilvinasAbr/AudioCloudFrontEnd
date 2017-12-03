@@ -7,12 +7,13 @@ import {
   Feed
 } from 'semantic-ui-react';
 import moment from 'moment';
-import {Link} from 'react-router-dom';
+import BlackLink from '../common/BlackLink';
 
 import * as paths from '../constants/RouterConstants';
+import * as styles from '../styles';
 
 const EventsList = ({events}) => (
-  <Segment style={{height: '655px', overflow: 'auto'}}>
+  <Segment style={{backgroundColor: styles.secondaryBackground, height: '655px', overflow: 'auto'}}>
     <Feed>
       {events.map((event, i) => (
         <Feed.Event key={i}>
@@ -30,7 +31,7 @@ const EventsList = ({events}) => (
                   <Item.Image size='small' src={event.song.pictureUrl}/>
                   <Item.Content>
                     <Item.Header>
-                      <Link to={paths.SONG_PATH.replace(':id', event.song.id)}>{event.song.title}</Link>
+                      <BlackLink to={paths.SONG_PATH.replace(':id', event.song.id)}>{event.song.title}</BlackLink>
                     </Item.Header>
                     <Item.Description>
                       <p>{event.song.plays} Plays {event.song.likes} Likes</p>

@@ -5,7 +5,7 @@ import {
   Dropdown,
   Menu
 } from 'semantic-ui-react';
-import {Link} from 'react-router-dom';
+import BlackLink from '../common/BlackLink';
 
 import CreatePlaylistModal from '../createPlaylist/CreatePlaylistModal';
 import UploadSongModal from '../uploadSong/UploadSongModal';
@@ -32,13 +32,13 @@ const HeaderMobile = ({user, onSearch, logout}) => (
                 {user ? user.name : ''}
               </Dropdown.Item>
               <Dropdown.Item>
-                <Link to={paths.HOME_PATH}>Home</Link>
+                <BlackLink to={paths.HOME_PATH}>Home</BlackLink>
               </Dropdown.Item>
               <Dropdown.Item>
-                <Link to={paths.GENRES_PATH}>Genres</Link>
+                <BlackLink to={paths.GENRES_PATH}>Genres</BlackLink>
               </Dropdown.Item>
               <Dropdown.Item>
-                <Link to={paths.LIBRARY_PATH}>Library</Link>
+                <BlackLink to={paths.LIBRARY_PATH}>Library</BlackLink>
               </Dropdown.Item>
               <Dropdown.Item><UploadSongModal/></Dropdown.Item>
               <Dropdown.Item><CreatePlaylistModal/></Dropdown.Item>

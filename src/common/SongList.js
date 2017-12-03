@@ -4,7 +4,7 @@ import {
   Item,
   Segment
 } from 'semantic-ui-react';
-import {Link} from 'react-router-dom';
+import BlackLink from '../common/BlackLink';
 
 import * as styles from '../styles';
 
@@ -13,10 +13,6 @@ const heightWithoutTitle = '572px';
 
 const style = {
   backgroundColor: styles.secondaryBackground
-};
-
-const linkStyle = {
-  color: styles.blackTextColor
 };
 
 const SongList = ({title, songs, songUrls}) => (
@@ -36,7 +32,7 @@ const SongList = ({title, songs, songUrls}) => (
           <Item key={i} style={style}>
               <Item.Image size='tiny' src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
             <Item.Content>
-              <Item.Header><Link style={linkStyle} to={songUrls[i]}>{song.title}</Link></Item.Header>
+              <Item.Header><BlackLink to={songUrls[i]}>{song.title}</BlackLink></Item.Header>
               <Item.Description>
                 {song && song.user && song.user.name}
               </Item.Description>

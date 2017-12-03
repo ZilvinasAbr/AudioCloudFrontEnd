@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import BlackLink from '../common/BlackLink';
 import {Button, Header, Image, Loader, Segment} from 'semantic-ui-react';
 
 import * as paths from '../constants/RouterConstants';
@@ -37,12 +37,11 @@ class Playlists extends Component {
                   <Image size='tiny' src='http://via.placeholder.com/1024x1024'/>
                 }
                 <Header as='h5'>
-                  <Link
-                    style={{color: 'black'}}
+                  <BlackLink
                     to={paths.PLAYLIST_PATH.replace(':playlistId', playlist.id)}
                   >
                     {playlist.name}
-                  </Link>
+                  </BlackLink>
                 </Header>
               </Segment>
             ))

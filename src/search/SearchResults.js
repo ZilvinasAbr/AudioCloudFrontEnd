@@ -6,7 +6,7 @@ import {
   Image,
   Item
 } from 'semantic-ui-react';
-import {Link} from 'react-router-dom';
+import BlackLink from '../common/BlackLink';
 import moment from 'moment';
 
 import * as paths from '../constants/RouterConstants';
@@ -31,9 +31,8 @@ const SearchResults = ({songs}) => (
                     <Item key={i}>
                       <Item.Image size='small' src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
                       <Item.Content>
-                        <Item.Header><Link
-                          style={{color: 'black'}}
-                          to={paths.SONG_PATH.replace(':id', song.id)}>{song.title}</Link></Item.Header>
+                        <Item.Header><BlackLink
+                          to={paths.SONG_PATH.replace(':id', song.id)}>{song.title}</BlackLink></Item.Header>
                         <Item.Description>
                           <p>{song.plays} Plays {song.likes} Likes</p>
                         </Item.Description>

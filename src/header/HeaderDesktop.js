@@ -6,7 +6,7 @@ import {
   Dropdown,
   Menu
 } from 'semantic-ui-react';
-import {Link} from 'react-router-dom';
+import BlackLink from '../common/BlackLink';
 
 import CreatePlaylistModal from '../createPlaylist/CreatePlaylistModal';
 import UploadSongModal from '../uploadSong/UploadSongModal';
@@ -27,16 +27,16 @@ const HeaderDesktop = ({user, onSearch, logout}) => (
     <Menu borderless fixed='top' style={menuStyle}>
       <Container>
         <Menu.Item>
-          <Link to={paths.HOME_PATH}><Button style={buttonStyle}>Home</Button></Link>
+          <BlackLink to={paths.HOME_PATH}><Button style={buttonStyle}>Home</Button></BlackLink>
         </Menu.Item>
         <Menu.Item>
-          <Link to={paths.GENRES_PATH}><Button style={buttonStyle}>Genres</Button></Link>
+          <BlackLink to={paths.GENRES_PATH}><Button style={buttonStyle}>Genres</Button></BlackLink>
         </Menu.Item>
         <Menu.Item>
           <SearchInput onSearch={onSearch} />
         </Menu.Item>
         <Menu.Item>
-          <Link to={paths.LIBRARY_PATH}><Button style={buttonStyle}>Library</Button></Link>
+          <BlackLink to={paths.LIBRARY_PATH}><Button style={buttonStyle}>Library</Button></BlackLink>
         </Menu.Item>
         <Menu.Item>
           <Dropdown button text={user ? user.name : ''} style={buttonStyle}>

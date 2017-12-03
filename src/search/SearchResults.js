@@ -19,19 +19,20 @@ const SearchResults = ({songs}) => (
           (songs.map((song, i) => (
             <Feed.Event key={i}>
               <Feed.Label>
-                <Image src='/image.png'/>
+                <Image src={song.user.profilePictureUrl || 'http://via.placeholder.com/1024x1024'}/>
               </Feed.Label>
               <Feed.Content>
                 <Feed.Summary>
-                  <Feed.User>{song.user.name}</Feed.User>
+                  <Feed.User style={{color: 'black'}}>{song.user.name}</Feed.User>
                   <Feed.Date>{moment(song.uploadDate).format('MMM Do YYYY')}</Feed.Date>
                 </Feed.Summary>
                 <Feed.Extra>
                   <Item.Group divided>
                     <Item key={i}>
-                      <Item.Image size='small' src={song.pictureUrl}/>
+                      <Item.Image size='small' src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
                       <Item.Content>
                         <Item.Header><Link
+                          style={{color: 'black'}}
                           to={paths.SONG_PATH.replace(':id', song.id)}>{song.title}</Link></Item.Header>
                         <Item.Description>
                           <p>{song.plays} Plays {song.likes} Likes</p>

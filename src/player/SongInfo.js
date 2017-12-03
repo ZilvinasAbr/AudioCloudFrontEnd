@@ -4,13 +4,19 @@ import {
   Item
 } from 'semantic-ui-react';
 
+import * as styles from '../styles';
+
+const style = {
+  'backgroundColor': styles.playerBackground
+};
+
 const SongInfo = ({title, pictureUrl, uploaderName, isLiked}) => (
-  <Item.Group>
+  <Item.Group style={style}>
     <Item>
       <Item.Image size='tiny' src={pictureUrl}/>
       <Item.Content>
-        <Item.Header>{title}</Item.Header>
-        <Item.Description>
+        <Item.Header style={{color: styles.whiteTextColor}}>{title}</Item.Header>
+        <Item.Description style={{color: styles.whiteTextColor}}>
           {uploaderName}
         </Item.Description>
       </Item.Content>

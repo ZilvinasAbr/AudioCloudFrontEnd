@@ -31,9 +31,14 @@ class Likes extends Component {
           {
             likedPlaylist.songs.map((song, i) => (
               <Segment key={i}>
-                <Image size='tiny' src={song.pictureUrl}/>
+                <Image size='tiny' src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
                 <Header as='h5'>
-                  <Link to={paths.SONG_PATH.replace(':id', song.id)}>{song.title}</Link>
+                  <Link
+                    style={{color: 'black'}}
+                    to={paths.SONG_PATH.replace(':id', song.id)}
+                  >
+                    {song.title}
+                  </Link>
                 </Header>
               </Segment>
             ))

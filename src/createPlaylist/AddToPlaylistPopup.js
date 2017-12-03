@@ -10,6 +10,11 @@ import {
 import {fetchUserPlaylists} from '../actions/LibraryActions';
 import {getUserPlaylists} from '../selectors/LibrarySelectors';
 import {getCurrentUser} from '../selectors/UserSelectors';
+import * as styles from '../styles';
+
+const secondaryButton = {
+  backgroundColor: styles.menuButtonColor
+};
 
 class AddToPlaylistPopup extends Component {
   state = {
@@ -44,7 +49,7 @@ class AddToPlaylistPopup extends Component {
 
     return (
       <Popup
-        trigger={<Button icon='add'/>}
+        trigger={<Button style={secondaryButton}  icon='add'/>}
         on='click'
         open={this.state.isOpen}
         onClose={this.handleClose}

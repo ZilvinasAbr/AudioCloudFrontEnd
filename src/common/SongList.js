@@ -6,23 +6,37 @@ import {
 } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
+import * as styles from '../styles';
+
 const heightWithTitle = '558px';
 const heightWithoutTitle = '572px';
 
+const style = {
+  backgroundColor: styles.secondaryBackground
+};
+
+const linkStyle = {
+  color: styles.blackTextColor
+};
+
 const SongList = ({title, songs, songUrls}) => (
-  <Segment>
+  <Segment style={style}>
     {
-      title ? <Segment textAlign='center'>
+      title ? <Segment textAlign='center' style={style}>
         <h3>{title}</h3>
       </Segment> : null
     }
-    <Segment style={{height: title ? heightWithTitle : heightWithoutTitle, overflow: 'auto'}}>
+    <Segment style={{
+      height: title ? heightWithTitle : heightWithoutTitle,
+      overflow: 'auto',
+      backgroundColor: styles.secondaryBackground
+    }}>
       <Item.Group divided>
         {songs.map((song, i) => (
-          <Item key={i}>
-            <Item.Image size='tiny' src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
+          <Item key={i} style={style}>
+              <Item.Image size='tiny' src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
             <Item.Content>
-              <Item.Header><Link to={songUrls[i]}>{song.title}</Link></Item.Header>
+              <Item.Header><Link style={linkStyle} to={songUrls[i]}>{song.title}</Link></Item.Header>
               <Item.Description>
                 {song && song.user && song.user.name}
               </Item.Description>

@@ -2,6 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Input} from 'semantic-ui-react';
 
+import * as styles from '../styles';
+
+const inputStyle = {
+  'backgroundColor': styles.mainColor
+};
+
 class SearchInput extends Component {
   state = {
     query: ''

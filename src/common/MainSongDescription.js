@@ -5,8 +5,14 @@ import {
 } from 'semantic-ui-react';
 import moment from 'moment';
 
+import * as styles from '../styles';
+
+const style = {
+  backgroundColor: styles.secondaryBackground
+};
+
 const MainSongDescription = ({createdOn, description}) => (
-  <Segment>
+  <Segment style={style}>
     <h3>{moment(createdOn).format('MMM Do YYYY')}</h3>
     <p>{description}</p>
   </Segment>

@@ -4,9 +4,14 @@ import {
   Grid,
 } from 'semantic-ui-react';
 
+import * as styles from '../styles';
 import * as paths from '../constants/RouterConstants';
 import EventsList from './EventsList';
 import SongList from '../common/SongList';
+
+const style = {
+  backgroundColor: styles.secondaryBackground
+};
 
 class NewsFeed extends Component {
   componentDidMount() {

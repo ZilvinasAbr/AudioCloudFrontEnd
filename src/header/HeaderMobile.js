@@ -11,10 +11,19 @@ import CreatePlaylistModal from '../createPlaylist/CreatePlaylistModal';
 import UploadSongModal from '../uploadSong/UploadSongModal';
 import SearchInput from './SearchInput';
 import * as paths from '../constants/RouterConstants';
+import * as styles from '../styles';
+
+const menuStyle = {
+  'backgroundColor': styles.menuBackgroundColor
+};
+
+const buttonStyle = {
+  'backgroundColor': styles.menuButtonColor
+};
 
 const HeaderMobile = ({user, onSearch, logout}) => (
   <header>
-    <Menu borderless fixed='top'>
+    <Menu borderless fixed='top' style={menuStyle}>
       <Container>
         <Menu.Item>
           <Dropdown icon='bars' button>

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {Button, Header, Image, Loader, Segment} from 'semantic-ui-react';
 
 import * as paths from '../constants/RouterConstants';
+// import * as styles from '../styles';
 
 class Uploaded extends Component {
   state = {
@@ -31,9 +32,14 @@ class Uploaded extends Component {
           {
             songs.map((song, i) => (
               <Segment key={i}>
-                <Image size='tiny' src={song.pictureUrl}/>
+                <Image size='tiny' src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
                 <Header as='h5'>
-                  <Link to={paths.SONG_PATH.replace(':id', song.id)}>{song.title}</Link>
+                  <Link
+                    style={{color: 'black'}}
+                    to={paths.SONG_PATH.replace(':id', song.id)}
+                  >
+                    {song.title}
+                  </Link>
                 </Header>
               </Segment>
             ))

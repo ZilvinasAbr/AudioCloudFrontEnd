@@ -7,6 +7,11 @@ import {
 
 import Slider from './Slider';
 import audio from './audio';
+import * as styles from '../styles';
+
+const style = {
+  'backgroundColor': styles.secondaryBackground
+};
 
 const MusicPlayer =
   ({
@@ -17,13 +22,13 @@ const MusicPlayer =
      currentTime,
      duration
    }) => (
-    <Segment>
+    <Segment style={style}>
       <Slider
         value={currentTime}
         max={duration}
         onChange={changeCurrentTime}
       />
-      <Segment textAlign='center'>
+      <Segment textAlign='center' style={style}>
         <Icon
           name='step backward'
           size='large'

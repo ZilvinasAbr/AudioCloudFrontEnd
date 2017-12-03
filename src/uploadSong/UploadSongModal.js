@@ -3,9 +3,18 @@ import {Button, Modal} from 'semantic-ui-react';
 
 import * as api from '../apiService';
 import {UPLOAD_FILE_URL, GENRES_URL} from '../constants/ApiConstants';
+import * as styles from '../styles';
 
 import {uploadSong} from '../actions/SongActions';
 import UploadSongForm from './UploadSongForm';
+
+const mainButtonStyle = {
+  'backgroundColor': styles.mainColor
+};
+
+const modalStyle = {
+  'backgroundColor': `${styles.mainColor}`
+};
 
 class UploadSongModal extends Component {
   async componentDidMount() {
@@ -80,7 +89,7 @@ class UploadSongModal extends Component {
     return (
       <div>
         <div onClick={this.show(false)}>Upload Song</div>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={open} onClose={this.close} style={modalStyle}>
           <Modal.Header>Upload Song</Modal.Header>
           <Modal.Content>
             <Modal.Description>
@@ -93,7 +102,7 @@ class UploadSongModal extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button positive onClick={this.submit}>
+            <Button style={mainButtonStyle} onClick={this.submit}>
               Submit
             </Button>
             <Button color='black' onClick={this.close}>

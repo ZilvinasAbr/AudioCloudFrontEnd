@@ -37,7 +37,12 @@ class Playlists extends Component {
                   <Image size='tiny' src='http://via.placeholder.com/1024x1024'/>
                 }
                 <Header as='h5'>
-                  <Link to={paths.PLAYLIST_PATH.replace(':playlistId', playlist.id)}>{playlist.name}</Link>
+                  <Link
+                    style={{color: 'black'}}
+                    to={paths.PLAYLIST_PATH.replace(':playlistId', playlist.id)}
+                  >
+                    {playlist.name}
+                  </Link>
                 </Header>
               </Segment>
             ))

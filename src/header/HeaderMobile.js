@@ -22,9 +22,9 @@ const HeaderMobile = ({user, onSearch, logout}) => (
     <Menu borderless fixed='top' style={menuStyle}>
       <Container>
         <Menu.Item>
-          <Dropdown icon='bars' button>
+          <Dropdown icon='bars' button style={{backgroundColor: 'rgb(242,113,28)'}}>
             <Dropdown.Menu>
-              <Dropdown.Item color='orange'>
+              <Dropdown.Item>
                 {user ? user.name : ''}
               </Dropdown.Item>
               <Dropdown.Item>

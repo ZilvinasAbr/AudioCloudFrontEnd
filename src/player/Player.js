@@ -1,21 +1,42 @@
 import React from 'react';
-import {
-  Responsive
-} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
-import PlayerDesktop from './PlayerDesktop';
-import PlayerMobile from './PlayerMobile';
+import MusicPlayer from './MusicPlayer';
 
-const Player = (props) => (
-  <div>
-    {/*<Responsive maxWidth={764}>*/}
-      {/*<PlayerMobile {...props}/>*/}
-    {/*</Responsive>*/}
-    {/*<Responsive minWidth={765}>*/}
-      {/*<PlayerDesktop {...props}/>*/}
-    {/*</Responsive>*/}
-    <PlayerDesktop {...props}/>
-  </div>
-);
+const Player =
+  ({
+     isPlaying,
+     currentSong,
+     currentTime,
+     duration,
+     onPause,
+     onPlay,
+     onTimeUpdate,
+     onLoadedMetadata
+   }) =>
+  currentSong && (
+    <MusicPlayer
+      currentSong={currentSong}
+      audioUrl={currentSong.filePath}
+      isPlaying={isPlaying}
+      onPause={onPause}
+      onPlay={onPlay}
+      onTimeUpdate={onTimeUpdate}
+      onLoadedMetadata={onLoadedMetadata}
+      currentTime={currentTime}
+      duration={duration}
+    />
+  );
+
+Player.propTypes = {
+  currentSong: PropTypes.shape({}),
+  currentTime: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  onPause: PropTypes.func.isRequired,
+  onPlay: PropTypes.func.isRequired,
+  onTimeUpdate: PropTypes.func.isRequired,
+  onLoadedMetadata: PropTypes.func.isRequired
+};
 
 export default Player;

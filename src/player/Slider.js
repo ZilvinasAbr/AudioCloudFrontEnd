@@ -63,7 +63,7 @@ class Slider extends Component {
         onClick={this.onClick}
       >
         <Progress
-          style={{width: `${width - width/2}px`}}
+          style={{width: `${width - 300}px`}}
           color='orange'
           percent={getPercentage(value, max)}
           size='tiny'

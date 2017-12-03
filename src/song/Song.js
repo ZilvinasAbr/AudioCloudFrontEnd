@@ -27,7 +27,7 @@ class Song extends Component {
   }
 
   render() {
-    const {playSong, song, popularSongs} = this.props;
+    const {playSong, song, popularSongs, isPlaying} = this.props;
 
     if (!song) {
       return <Loader active/>;
@@ -53,6 +53,7 @@ class Song extends Component {
               pictureUrl={song.pictureUrl}
               likes={song.likes}
               plays={song.plays}
+              isPlaying={isPlaying}
             />
           </Grid.Column>
           <Grid.Column width={6}>

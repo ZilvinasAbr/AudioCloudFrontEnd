@@ -14,7 +14,9 @@ const style = {
   backgroundColor: styles.secondaryBackground
 };
 
-const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
+const getIcon = isPlaying => isPlaying ? 'pause' : 'play';
+
+const MainSong = ({id, title, pictureUrl, likes, plays, playSong, isPlaying}) => (
   <div style={style}>
     <Segment style={style}>
       <Image src={pictureUrl || 'http://via.placeholder.com/1024x1024'} size='large' centered/>
@@ -29,7 +31,7 @@ const MainSong = ({id, title, pictureUrl, likes, plays, playSong}) => (
         <AddToPlaylistPopup
           songId={id}
         />
-        <MainButton onClick={() => playSong(id)}>Play</MainButton>
+        <MainButton icon={getIcon(isPlaying)} onClick={() => playSong(id)}/>
       </Segment>
       <Segment.Group horizontal>
         <Segment>{plays} Plays</Segment>
@@ -45,7 +47,8 @@ MainSong.propTypes = {
   pictureUrl: PropTypes.string.isRequired,
   likes: PropTypes.number.isRequired,
   plays: PropTypes.number.isRequired,
-  playSong: PropTypes.func.isRequired
+  playSong: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 export default MainSong;

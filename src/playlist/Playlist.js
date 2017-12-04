@@ -47,20 +47,13 @@ class Playlist extends Component {
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
             <MainSong
+              song={currentSong}
               playSong={playSong}
-              id={currentSong.id}
-              title={currentSong.title}
-              pictureUrl={currentSong.pictureUrl}
-              likes={currentSong.likes}
-              plays={currentSong.plays}
               isPlaying={isPlaying}
             />
           </Grid.Column>
           <Grid.Column width={6}>
-            <MainSongDescription
-              createdOn={currentSong.uploadDate}
-              description={currentSong.description}
-            />
+            <MainSongDescription song={currentSong}/>
           </Grid.Column>
         </Grid.Row>
       </Grid>

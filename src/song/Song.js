@@ -47,20 +47,13 @@ class Song extends Component {
           </Grid.Column>
           <Grid.Column width={6} textAlign='center'>
             <MainSong
-              id={song.id}
+              song={song}
               playSong={playSong}
-              title={song.title}
-              pictureUrl={song.pictureUrl}
-              likes={song.likes}
-              plays={song.plays}
               isPlaying={isPlaying}
             />
           </Grid.Column>
           <Grid.Column width={6}>
-            <MainSongDescription
-              createdOn={song.uploadDate}
-              description={song.description}
-            />
+            <MainSongDescription song={song}/>
           </Grid.Column>
         </Grid.Row>
       </Grid>

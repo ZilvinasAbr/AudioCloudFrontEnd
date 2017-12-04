@@ -16,7 +16,6 @@ class Slider extends Component {
   }
 
   updateWindowDimensions = () => {
-    console.log(window.innerWidth);
     this.setState({width: window.innerWidth});
   };
 

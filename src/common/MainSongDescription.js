@@ -11,16 +11,18 @@ const style = {
   backgroundColor: styles.secondaryBackground
 };
 
-const MainSongDescription = ({createdOn, description}) => (
+const MainSongDescription = ({song}) => song ? (
   <Segment style={style}>
-    <h3>{moment(createdOn).format('MMM Do YYYY')}</h3>
-    <p>{description}</p>
+    <h3>{moment(song.uploadDate).format('MMM Do YYYY')}</h3>
+    <p>{song.description}</p>
   </Segment>
-);
+) : null;
 
 MainSongDescription.propTypes = {
-  createdOn: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  song: PropTypes.shape({
+    uploadDate: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+  })
 };
 
 export default MainSongDescription;

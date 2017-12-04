@@ -16,37 +16,54 @@ const style = {
 
 const getIcon = isPlaying => isPlaying ? 'pause' : 'play';
 
-const MainSong = ({id, title, pictureUrl, likes, plays, playSong, isPlaying}) => (
+const MainSong = ({song, playSong, isPlaying}) => song ? (
   <div style={style}>
     <Segment style={style}>
-      <Image src={pictureUrl || 'http://via.placeholder.com/1024x1024'} size='large' centered/>
+      <Image src={song.pictureUrl || 'http://via.placeholder.com/1024x1024'} size='large' centered/>
     </Segment>
     <Segment.Group>
       <Segment style={style}>
-        <h2>{title}</h2>
+        <h2>{song.title}</h2>
         <MainButton icon onClick={() => {
         }}>
           <Icon name='heart'/>
         </MainButton>
         <AddToPlaylistPopup
-          songId={id}
+          songId={song.id}
         />
-        <MainButton icon={getIcon(isPlaying)} onClick={() => playSong(id)}/>
+        <MainButton icon={getIcon(isPlaying)} onClick={() => playSong(song.id)}/>
       </Segment>
       <Segment.Group horizontal>
-        <Segment>{plays} Plays</Segment>
-        <Segment>{likes} Likes</Segment>
+        <Segment>{song.plays} Plays</Segment>
+        <Segment>{song.likes} Likes</Segment>
+      </Segment.Group>
+    </Segment.Group>
+  </div>
+) : (
+  <div style={style}>
+    <Segment style={style}>
+      <Image src='http://via.placeholder.com/1024x1024' size='large' centered/>
+    </Segment>
+    <Segment.Group>
+      <Segment style={style}>
+        <h2>Playlist has no songs</h2>
+      </Segment>
+      <Segment.Group horizontal>
+        <Segment></Segment>
+        <Segment></Segment>
       </Segment.Group>
     </Segment.Group>
   </div>
 );
 
 MainSong.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  pictureUrl: PropTypes.string.isRequired,
-  likes: PropTypes.number.isRequired,
-  plays: PropTypes.number.isRequired,
+  song: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    pictureUrl: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    plays: PropTypes.number.isRequired
+  }),
   playSong: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired
 };

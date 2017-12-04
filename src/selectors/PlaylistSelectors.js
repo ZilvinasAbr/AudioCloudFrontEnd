@@ -18,6 +18,8 @@ export const getCurrentSong = createSelector(
   (entities, songId, playlist) => {
     if (!playlist)
       return null;
+    if (!playlist.songs.length)
+      return null;
     if (!songId) {
       const defaultSong = playlist.songs[0];
       return denormalize(defaultSong.id, songSchema, entities);

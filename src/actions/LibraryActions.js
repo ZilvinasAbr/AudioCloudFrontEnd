@@ -27,9 +27,11 @@ export const fetchUserPlaylistsSuccess = playlistIds => ({
   playlistIds
 });
 
-export const fetchLikedPlaylist = () => async dispatch => {
+export const fetchLikedPlaylist = amount => async dispatch => {
   try {
-    const response = await api.get(LIKED_PLAYLIST_URL, {authorized: true});
+    const likedPlaylistUrl = amount ? `${LIKED_PLAYLIST_URL}/${amount}` : LIKED_PLAYLIST_URL;
+
+    const response = await api.get(likedPlaylistUrl, {authorized: true});
     const json = await response.json();
 
     if (!response.ok) {
@@ -49,9 +51,11 @@ export const fetchLikedPlaylist = () => async dispatch => {
   }
 };
 
-export const fetchUploadedSongs = userName => async dispatch => {
+export const fetchUploadedSongs = (userName, amount) => async dispatch => {
   try {
-    const response = await api.get(USER_SONGS_URL.replace(':userName', userName), {authorized: true});
+    const userSongsUrl = amount ? `${USER_SONGS_URL}/${amount}` : USER_SONGS_URL;
+
+    const response = await api.get(userSongsUrl.replace(':userName', userName), {authorized: true});
     const json = await response.json();
 
     if (!response.ok) {
@@ -67,9 +71,11 @@ export const fetchUploadedSongs = userName => async dispatch => {
   }
 };
 
-export const fetchUserPlaylists = userName => async dispatch => {
+export const fetchUserPlaylists = (userName, amount)=> async dispatch => {
   try {
-    const response = await api.get(USER_PLAYLISTS_URL.replace(':userName', userName), {authorized: true});
+    const userPlaylistsUrl = amount ? `${USER_PLAYLISTS_URL}/${amount}` : USER_PLAYLISTS_URL;
+
+    const response = await api.get(userPlaylistsUrl.replace(':userName', userName), {authorized: true});
     const json = await response.json();
 
     if (!response.ok) {

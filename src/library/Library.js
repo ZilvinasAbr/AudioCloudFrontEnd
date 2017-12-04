@@ -9,14 +9,23 @@ class Library extends Component {
   async componentDidMount() {
     const {currentUser, fetchLikedPlaylist, fetchUploadedSongs, fetchUserPlaylists} = this.props;
     const {name} = currentUser;
+    const initialAmount = 4;
 
-    fetchLikedPlaylist();
-    fetchUploadedSongs(name);
-    fetchUserPlaylists(name);
+    fetchLikedPlaylist(initialAmount);
+    fetchUploadedSongs(name, initialAmount);
+    fetchUserPlaylists(name, initialAmount);
   }
 
   render() {
-    const {likedPlaylist, uploaded, playlists} = this.props;
+    const {
+      fetchLikedPlaylist,
+      fetchUploadedSongs,
+      fetchUserPlaylists,
+      likedPlaylist,
+      uploaded,
+      playlists,
+      currentUser: {name}
+    } = this.props;
 
     return (
       <Container style={{ marginTop: '5em', marginBottom: '10em' }}>
@@ -27,7 +36,7 @@ class Library extends Component {
             imageUrl: s.pictureUrl,
             linkUrl: paths.SONG_PATH.replace(':id', s.id)
           }))}
-          onShowAll={() => {}}
+          onShowAll={() => fetchLikedPlaylist()}
         />
         <ShowAllList
           title='Songs Uploaded'
@@ -36,7 +45,7 @@ class Library extends Component {
             imageUrl: s.pictureUrl,
             linkUrl: paths.SONG_PATH.replace(':id', s.id)
           }))}
-          onShowAll={() => {}}
+          onShowAll={() => fetchUploadedSongs(name)}
         />
         <ShowAllList
           title='Playlists'
@@ -45,7 +54,7 @@ class Library extends Component {
             imageUrl: p.songs.length ? p.songs[0].pictureUrl : 'http://via.placeholder.com/1024x1024',
             linkUrl: paths.PLAYLIST_PATH.replace(':playlistId', p.id)
           }))}
-          onShowAll={() => {}}
+          onShowAll={() => fetchUserPlaylists(name)}
         />
       </Container>
     )

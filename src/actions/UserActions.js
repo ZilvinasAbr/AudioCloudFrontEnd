@@ -46,12 +46,7 @@ export const fetchCurrentUser = () => async dispatch => {
 export const registerUser = () => async () => {
   try {
     const response = await api.post(REGISTER_USER_URL, {authorized: true});
-    const json = await response.json();
-
-    if (!response.ok) {
-      throw new Error(json);
-    }
-
+    await response.json();
   } catch (err) {
     console.error('Could not register a user', err);
   }

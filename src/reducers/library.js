@@ -2,8 +2,8 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   liked: null,
-  uploaded: [],
-  playlists: []
+  uploaded: null,
+  playlists: null
 };
 
 export default function library(state = initialState, action) {

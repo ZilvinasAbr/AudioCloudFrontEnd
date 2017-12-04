@@ -4,9 +4,8 @@ import BlackLink from '../common/BlackLink';
 import {Header, Image, Loader, Segment} from 'semantic-ui-react';
 
 import MainButton from '../common/MainButton';
-import * as paths from '../constants/RouterConstants';
 
-class Playlists extends Component {
+class ShowAllList extends Component {
   state = {
     isShowingAll: false
   };
@@ -19,29 +18,30 @@ class Playlists extends Component {
 
   render() {
     const {isShowingAll} = this.state;
-    const {playlists} = this.props;
+    const {title, elements} = this.props;
 
-    if (!playlists) {
-      return <Loader active/>;
+    if (!elements) {
+      return (
+        <Segment>
+          <Header as='h2'>{title}</Header>
+          <Loader active inline/>
+        </Segment>
+      );
     }
 
     return (
       <Segment>
-        <Header as='h2'>Playlists</Header>
+        <Header as='h2'>{title}</Header>
         <Segment.Group horizontal>
           {
-            playlists.map((playlist, i) => (
+            elements.map((element, i) => (
               <Segment key={i}>
-                {playlist.songs.length ?
-                  <Image size='tiny' src={playlist.songs[0].pictureUrl}/>
-                  :
-                  <Image size='tiny' src='http://via.placeholder.com/1024x1024'/>
-                }
+                <Image size='tiny' src={element.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
                 <Header as='h5'>
                   <BlackLink
-                    to={paths.PLAYLIST_PATH.replace(':playlistId', playlist.id)}
+                    to={element.linkUrl}
                   >
-                    {playlist.name}
+                    {element.title}
                   </BlackLink>
                 </Header>
               </Segment>
@@ -56,13 +56,16 @@ class Playlists extends Component {
   }
 }
 
-Playlists.defaultProps = {
-  playlists: null
-};
-
-Playlists.propTypes = {
-  playlists: PropTypes.arrayOf(PropTypes.shape({})),
+ShowAllList.propTypes = {
+  title: PropTypes.string.isRequired,
+  elements: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string,
+      linkUrl: PropTypes.string.isRequired
+    })
+  ),
   onShowAll: PropTypes.func.isRequired
 };
 
-export default Playlists;
+export default ShowAllList;

@@ -11,7 +11,7 @@ import moment from 'moment';
 
 import * as paths from '../constants/RouterConstants';
 
-const GenreSongsList = ({songs}) => (
+const GenreSongsList = ({songs}) => songs.length ? (
   <Container>
     <Feed>
       {songs.map((song, i) => (
@@ -41,6 +41,10 @@ const GenreSongsList = ({songs}) => (
         </Feed.Event>
       ))}
     </Feed>
+  </Container>
+) : (
+  <Container>
+    Genre has no songs
   </Container>
 );
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Icon,
   Image,
   Segment
 } from 'semantic-ui-react';
 
 import MainButton from '../common/MainButton';
+import LikeButton from './LikeButton';
 import * as styles from '../styles';
 import AddToPlaylistPopup from '../createPlaylist/AddToPlaylistPopup';
 
@@ -24,10 +24,7 @@ const MainSong = ({song, playSong, isPlaying}) => song ? (
     <Segment.Group>
       <Segment style={style}>
         <h2>{song.title}</h2>
-        <MainButton icon onClick={() => {
-        }}>
-          <Icon name='heart'/>
-        </MainButton>
+        <LikeButton songId={song.id}/>
         <AddToPlaylistPopup
           songId={song.id}
         />

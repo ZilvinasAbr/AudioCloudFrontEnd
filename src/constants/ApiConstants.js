@@ -18,3 +18,6 @@ export const CURRENT_USER_URL = '/api/users/current';
 export const REGISTER_USER_URL = '/api/users/register';
 export const SONG_STREAM_URL = `${getBackEndUrl()}/api/files/:songPath`;
 export const UPLOAD_FILE_URL = '/api/files';
+export const IS_SONG_LIKED_URL = '/api/likes/song/:songId';
+export const LIKE_SONG_URL = IS_SONG_LIKED_URL;
+export const DISLIKE_SONG_URL = IS_SONG_LIKED_URL;

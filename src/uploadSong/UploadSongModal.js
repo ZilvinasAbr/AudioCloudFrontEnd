@@ -47,7 +47,7 @@ class UploadSongModal extends Component {
       const newSong = {
         title: data.title,
         description: data.description,
-        pictureUrl: 'http://via.placeholder.com/1024x1024',
+        pictureUrl: data.pictureUrl,
         filePath: songUrl,
         genre: data.genre
       };

@@ -22,7 +22,7 @@ class ShowAllList extends Component {
       {
         elements.map((element, j) => (
           <Segment key={j}>
-            <Image size='tiny' src={element.pictureUrl || 'http://via.placeholder.com/1024x1024'}/>
+            <Image size='tiny' src={element.imageUrl || 'http://via.placeholder.com/1024x1024'}/>
             <Header as='h5'>
               <BlackLink
                 to={element.linkUrl}
@@ -36,6 +36,13 @@ class ShowAllList extends Component {
     </Segment.Group>
   );
 
+  renderNoElements = () => (
+    <Segment>
+      <Header as='h2'>{this.props.title}</Header>
+      <Header as='h3'>No data</Header>
+    </Segment>
+  );
+
   render() {
     const {isShowingAll} = this.state;
     const {title, elements} = this.props;
@@ -47,6 +54,10 @@ class ShowAllList extends Component {
           <Loader active inline/>
         </Segment>
       );
+    }
+
+    if (!elements.length) {
+      return this.renderNoElements();
     }
 
     const chunkSize = 4;

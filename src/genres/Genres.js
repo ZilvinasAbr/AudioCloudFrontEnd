@@ -34,7 +34,12 @@ class Genres extends Component {
     }
 
     return (
-      <Container style={{ marginTop: '5em', marginBottom: '10em' }}>
+      <Container style={{
+        height: `${window.innerHeight-80-40}px`,
+        overflow: 'auto',
+        marginTop: '5em',
+        marginBottom: '10em'
+      }}>
         <GenresTab
           activeGenre={activeGenre}
           genres={genres}

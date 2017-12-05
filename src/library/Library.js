@@ -28,7 +28,12 @@ class Library extends Component {
     } = this.props;
 
     return (
-      <Container style={{ marginTop: '5em', marginBottom: '10em' }}>
+      <Container style={{
+        height: `${window.innerHeight-80}px`,
+        overflow: 'auto',
+        marginTop: '5em',
+        marginBottom: '10em'
+      }}>
         <ShowAllList
           title='Likes'
           elements={likedPlaylist && likedPlaylist.songs.map(s => ({
